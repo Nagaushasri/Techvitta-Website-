@@ -1,0 +1,145 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Custom styles for line clamping */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Custom prose styles for blog content */
+.prose {
+  color: #374151;
+}
+
+.prose h1 {
+  color: #111827;
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.prose h2 {
+  color: #111827;
+  font-size: 1.875rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.prose h3 {
+  color: #111827;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose h4 {
+  color: #111827;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose p {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+.prose ul {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.prose ol {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.prose li {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose blockquote {
+  border-left: 4px solid #9333ea;
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: #6b7280;
+  background: #f9fafb;
+  padding: 1.5rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.prose blockquote p:first-of-type::before {
+  content: none;
+}
+
+.prose blockquote p:last-of-type::after {
+  content: none;
+}
+
+.prose strong {
+  font-weight: 600;
+  color: #111827;
+}
+
+.prose a {
+  color: #9333ea;
+  text-decoration: underline;
+}
+
+.prose a:hover {
+  color: #7c3aed;
+}
+
+/* Comparison table styles */
+.comparison-table h3 {
+  color: #9333ea;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.comparison-table p {
+  margin-bottom: 0.75rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .prose h1 {
+    font-size: 1.875rem;
+  }
+  
+  .prose h2 {
+    font-size: 1.5rem;
+  }
+  
+  .prose h3 {
+    font-size: 1.25rem;
+  }
+}

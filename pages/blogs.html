@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TechVitta Blog - Blockchain & Web3 Insights</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/png" href="../assets/Logo.jpg">
+    <style>
+        /* Zebpay-style Blog Layout */
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+        }
+
+        .main-content {
+            /* Removed background and padding as articles now have their own styling */
+        }
+
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+
+        .blog-header {
+            background: linear-gradient(135deg, #6f42c1 0%, #8e44ad 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/><circle cx="50" cy="50" r="25" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></svg>') no-repeat;
+            background-size: contain;
+        }
+
+        .blog-header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .blog-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .blog-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Article Content */
+        .article-content {
+            display: none;
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 1rem;
+        }
+
+        .article-content.active {
+            display: block;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .article-category {
+            background: #6f42c1;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .article-date, .article-author {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .article-excerpt {
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .article-image {
+            margin-bottom: 2rem;
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .article-body {
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .article-body h3 {
+            font-size: 1.5rem;
+            color: #1a1a1a;
+            margin: 2rem 0 1rem 0;
+            font-weight: 600;
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-body ul, .article-body ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .article-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        .article-body strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        /* Sidebar */
+        .sidebar-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+        }
+
+        .sidebar-articles {
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-article {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #e1e5e9;
+        }
+
+        .sidebar-article:hover {
+            background: #f8f9fa;
+            border-color: #6f42c1;
+        }
+
+        .sidebar-article.active {
+            background: #6f42c1;
+            color: white;
+            border-color: #6f42c1;
+        }
+
+        .sidebar-article-content h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .sidebar-article-content p {
+            font-size: 14px;
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+
+        .sidebar-meta {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        .sidebar-article.active .sidebar-article-content h4,
+        .sidebar-article.active .sidebar-article-content p,
+        .sidebar-article.active .sidebar-meta {
+            color: white;
+        }
+
+        .newsletter-section {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .newsletter-section h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .newsletter-section p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .newsletter-btn {
+            background: #6f42c1;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .newsletter-btn:hover {
+            background: #5a359a;
+        }
+
+        .search-bar {
+            max-width: 400px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            border: 2px solid #e1e5e9;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #6f42c1;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 18px;
+        }
+
+        .category-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 8px 20px;
+            border: none;
+            background: transparent;
+            color: #666;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn.active,
+        .category-btn:hover {
+            color: #6f42c1;
+            border-bottom-color: #6f42c1;
+        }
+
+        .sort-dropdown {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 2rem;
+        }
+
+        .sort-select {
+            padding: 8px 15px;
+            border: 1px solid #e1e5e9;
+            border-radius: 5px;
+            background: white;
+            color: #666;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .featured-blog {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-blog::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/><circle cx="50" cy="50" r="25" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></svg>') no-repeat;
+            background-size: contain;
+        }
+
+        .featured-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .featured-category {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .featured-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .featured-excerpt {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .featured-meta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .featured-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .featured-tag {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(45deg, #f0f2f5, #e1e5e9);
+        }
+
+        .blog-card-content {
+            padding: 1.5rem;
+        }
+
+        .blog-card-category {
+            background: #6f42c1;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .blog-card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+        }
+
+        .blog-card-excerpt {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .blog-card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .read-more {
+            color: #6f42c1;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        .newsletter-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .newsletter-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 400px;
+            margin: 0 auto;
+            gap: 1rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .newsletter-btn {
+            background: white;
+            color: #6f42c1;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .newsletter-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .recent-articles {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .recent-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+        }
+
+        .recent-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #f0f2f5;
+        }
+
+        .recent-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .recent-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #f0f2f5, #e1e5e9);
+        }
+
+        .recent-content h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .recent-content p {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .recent-meta {
+            font-size: 11px;
+            color: #999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .blog-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 1rem;
+            }
+            
+            .blog-header {
+                padding: 2rem 1rem;
+            }
+            
+            .blog-title {
+                font-size: 2rem;
+            }
+            
+            .article-title {
+                font-size: 2rem;
+            }
+            
+            .article-content {
+                padding: 1.5rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="../index.html" class="logo">TechVitta</a>
+        <input type="checkbox" id="menu-toggle" />
+        <label for="menu-toggle" class="hamburger">☰</label>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="products.html">Our Products</a>
+            <a href="services.html">Services</a>
+            <a href="blogs.html" class="active">Blogs</a>
+            <a href="contact.html" data-page="contact">Contact Us</a>
+            <div class="theme-toggle">
+                <label class="theme-toggle-label" for="theme-toggle">
+                    <input type="checkbox" id="theme-toggle" class="theme-toggle-checkbox">
+                    <span class="theme-toggle-slider"></span>
+                </label>
+                <span>Toggle Theme</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Blog Container -->
+    <div class="blog-container">
+        <!-- Left Column - Main Content -->
+        <div class="main-content">
+            <!-- Blog Header -->
+            <div class="blog-header">
+                <div class="blog-header-content">
+                    <h1 class="blog-title">The TechVitta Blog</h1>
+                    <p class="blog-subtitle">Latest insights on blockchain technology, Web3, and digital innovation</p>
+                </div>
+            </div>
+
+            <!-- Current Article Content -->
+            <div class="current-article" id="current-article">
+                <!-- Smart Contracts Article (Default) -->
+                <div class="article-content active" data-article="smart-contracts">
+                    <div class="article-meta">
+                        <span class="article-category">Blockchain</span>
+                        <span class="article-date">January 12, 2025</span>
+                        <span class="article-author">By TechVitta Team</span>
+                    </div>
+                    <h2 class="article-title">Smart Contracts: The Building Blocks of Decentralized Applications</h2>
+                    <p class="article-excerpt">
+                        Understanding how smart contracts work and their role in creating trustless, automated systems 
+                        in the blockchain ecosystem. Explore the technology that powers DeFi, NFTs, and Web3 applications.
+                    </p>
+                    
+                    <div class="article-image">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'><rect width='800' height='400' fill='%23667eea'/><circle cx='400' cy='200' r='120' fill='none' stroke='white' stroke-width='6'/><path d='M340 200 L370 230 L460 140' stroke='white' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/><text x='400' y='350' text-anchor='middle' fill='white' font-size='24' font-weight='bold'>Smart Contracts</text></svg>" alt="Smart Contracts">
+                    </div>
+
+                    <div class="article-body">
+                        <p>In the rapidly evolving world of blockchain technology and digital assets, smart contracts have emerged as one of the most revolutionary innovations, fundamentally changing how we think about digital agreements and automated systems.</p>
+
+                        <h3>What are Smart Contracts?</h3>
+                        <p>Smart contracts are self-executing programs that run on blockchain networks, automatically enforcing the terms of an agreement when predetermined conditions are met. Unlike traditional contracts that require intermediaries like lawyers, banks, or notaries to ensure compliance, smart contracts use cryptographic code to guarantee execution.</p>
+
+                        <h3>Key Characteristics</h3>
+                        <ul>
+                            <li><strong>Autonomy:</strong> Operate independently once deployed</li>
+                            <li><strong>Trustlessness:</strong> Eliminate need for trust between parties</li>
+                            <li><strong>Immutability:</strong> Cannot be altered after deployment</li>
+                            <li><strong>Transparency:</strong> All code and execution is publicly visible</li>
+                        </ul>
+
+                        <h3>How Smart Contracts Work</h3>
+                        <ol>
+                            <li><strong>Deployment:</strong> Contract code is deployed to blockchain</li>
+                            <li><strong>Transaction Initiation:</strong> User triggers the contract</li>
+                            <li><strong>Validation:</strong> Network nodes validate the transaction</li>
+                            <li><strong>Execution:</strong> Contract code runs automatically</li>
+                            <li><strong>State Update:</strong> Blockchain state is updated</li>
+                        </ol>
+
+                        <h3>Real-World Applications</h3>
+                        <ul>
+                            <li><strong>DeFi Protocols:</strong> Automated lending and borrowing</li>
+                            <li><strong>NFTs:</strong> Digital asset creation and management</li>
+                            <li><strong>Supply Chain:</strong> Automated tracking and payments</li>
+                            <li><strong>Insurance:</strong> Automated claims processing</li>
+                        </ul>
+
+                        <h3>Programming Languages</h3>
+                        <ul>
+                            <li><strong>Solidity:</strong> Most popular for Ethereum</li>
+                            <li><strong>Vyper:</strong> Python-like, security-focused</li>
+                            <li><strong>Rust:</strong> Used for Solana and Polkadot</li>
+                            <li><strong>Move:</strong> New language for Sui and Aptos</li>
+                        </ul>
+
+                        <h3>Security Considerations</h3>
+                        <p>Smart contract security is paramount due to the irreversible nature of blockchain transactions. Common vulnerabilities include reentrancy attacks, integer overflow, and access control issues. Best practices include comprehensive testing, code audits, and formal verification.</p>
+
+                        <p>Smart contracts represent a fundamental shift in how we think about digital agreements and automated systems. As the foundational building blocks of the Web3 ecosystem, they enable entirely new forms of economic organization and digital interaction that were previously impossible.</p>
+                    </div>
+                </div>
+
+                <!-- Tokenization Article -->
+                <div class="article-content" data-article="tokenization">
+                    <div class="article-meta">
+                        <span class="article-category">Tokenization</span>
+                        <span class="article-date">January 8, 2025</span>
+                        <span class="article-author">By TechVitta Team</span>
+                    </div>
+                    <h2 class="article-title">Introduction to Tokenization: A Complete Guide</h2>
+                    <p class="article-excerpt">
+                        Learn the fundamentals of asset tokenization and how it's transforming traditional markets. 
+                        Discover the benefits, challenges, and real-world applications of this revolutionary technology.
+                    </p>
+                    
+                    <div class="article-image">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'><rect width='800' height='400' fill='%236f42c1'/><rect x='100' y='100' width='120' height='200' fill='white' opacity='0.9'/><rect x='250' y='120' width='120' height='160' fill='white' opacity='0.7'/><rect x='400' y='140' width='120' height='120' fill='white' opacity='0.5'/><rect x='550' y='80' width='120' height='240' fill='white' opacity='0.3'/></svg>" alt="Tokenization">
+                    </div>
+
+                    <div class="article-body">
+                        <p>Asset tokenization is revolutionizing how we think about ownership and investment. By converting physical and digital assets into blockchain-based tokens, we're making previously illiquid assets accessible to a broader range of investors while introducing unprecedented levels of transparency and efficiency.</p>
+
+                        <h3>What is Tokenization?</h3>
+                        <p>Tokenization is the process of converting rights to an asset into a digital token on a blockchain. This allows for fractional ownership, increased liquidity, and programmability of traditionally illiquid assets like real estate, art, or commodities.</p>
+
+                        <h3>Types of Tokenized Assets</h3>
+                        <ul>
+                            <li><strong>Real Estate:</strong> Commercial and residential properties</li>
+                            <li><strong>Art & Collectibles:</strong> Paintings, sculptures, rare items</li>
+                            <li><strong>Commodities:</strong> Gold, silver, oil, agricultural products</li>
+                            <li><strong>Equity:</strong> Company shares and ownership stakes</li>
+                            <li><strong>Debt Instruments:</strong> Bonds, loans, and credit facilities</li>
+                        </ul>
+
+                        <h3>Benefits of Tokenization</h3>
+                        <ul>
+                            <li><strong>Fractional Ownership:</strong> Divide expensive assets into affordable shares</li>
+                            <li><strong>Increased Liquidity:</strong> Trade tokens on secondary markets</li>
+                            <li><strong>Transparency:</strong> Immutable ownership records on blockchain</li>
+                            <li><strong>Automation:</strong> Smart contracts handle compliance and payments</li>
+                            <li><strong>Global Access:</strong> Invest in assets worldwide</li>
+                        </ul>
+
+                        <h3>Technology Stack</h3>
+                        <p>Tokenization typically involves several key components: blockchain infrastructure, smart contracts for asset management, compliance frameworks, and user interfaces for trading and management.</p>
+
+                        <h3>Challenges and Considerations</h3>
+                        <p>While tokenization offers significant benefits, it also presents challenges including regulatory compliance, technical complexity, market adoption, and security considerations that must be carefully addressed.</p>
+                    </div>
+                </div>
+
+                <!-- Web 3.0 vs Web 2.0 Article -->
+                <div class="article-content" data-article="web3-comparison">
+                    <div class="article-meta">
+                        <span class="article-category">Comparison</span>
+                        <span class="article-date">January 10, 2025</span>
+                        <span class="article-author">By TechVitta Team</span>
+                    </div>
+                    <h2 class="article-title">Web 3.0 vs Web 2.0: The Ultimate Comparison</h2>
+                    <p class="article-excerpt">
+                        The ultimate comparison between Web 2.0 and Web 3.0 technologies. Understand the key differences, 
+                        benefits, and implications of the next generation of the internet.
+                    </p>
+                    
+                    <div class="article-image">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'><rect width='800' height='400' fill='%23e74c3c'/><circle cx='200' cy='200' r='80' fill='white' opacity='0.9'/><circle cx='600' cy='200' r='80' fill='white' opacity='0.9'/><text x='200' y='220' text-anchor='middle' fill='%23e74c3c' font-size='20' font-weight='bold'>Web 2.0</text><text x='600' y='220' text-anchor='middle' fill='%23e74c3c' font-size='20' font-weight='bold'>Web 3.0</text></svg>" alt="Web 3.0 vs Web 2.0">
+                    </div>
+
+                    <div class="article-body">
+                        <p>The evolution from Web 2.0 to Web 3.0 represents a fundamental shift in how we interact with the internet. While Web 2.0 brought us social media and user-generated content, Web 3.0 promises a decentralized, user-owned internet.</p>
+
+                        <h3>Web 2.0 Characteristics</h3>
+                        <ul>
+                            <li><strong>Centralized:</strong> Controlled by large tech companies</li>
+                            <li><strong>Social:</strong> User-generated content and social networking</li>
+                            <li><strong>Interactive:</strong> Dynamic web applications</li>
+                            <li><strong>Data Ownership:</strong> Companies own user data</li>
+                            <li><strong>Monetization:</strong> Advertising-based revenue models</li>
+                        </ul>
+
+                        <h3>Web 3.0 Characteristics</h3>
+                        <ul>
+                            <li><strong>Decentralized:</strong> No single point of control</li>
+                            <li><strong>User-Owned:</strong> Users control their data and identity</li>
+                            <li><strong>Trustless:</strong> No need for intermediaries</li>
+                            <li><strong>Transparent:</strong> Open-source and verifiable</li>
+                            <li><strong>Tokenized:</strong> Native digital assets and economies</li>
+                        </ul>
+
+                        <h3>Key Differences</h3>
+                        <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                            <tr style="background: #f8f9fa;">
+                                <th style="padding: 12px; border: 1px solid #ddd;">Aspect</th>
+                                <th style="padding: 12px; border: 1px solid #ddd;">Web 2.0</th>
+                                <th style="padding: 12px; border: 1px solid #ddd;">Web 3.0</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd;"><strong>Control</strong></td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Centralized</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Decentralized</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd;"><strong>Data Ownership</strong></td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Companies</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Users</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd;"><strong>Monetization</strong></td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Advertising</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Tokens/Crypto</td>
+                            </tr>
+                        </table>
+
+                        <h3>Future Implications</h3>
+                        <p>Web 3.0 represents a paradigm shift toward a more democratic, user-centric internet where individuals have greater control over their data, identity, and digital assets. This transition will fundamentally change how we interact with online services and create new economic opportunities.</p>
+                    </div>
+                </div>
+
+                <!-- Web 3.0 Evolution Article -->
+                <div class="article-content" data-article="web3-evolution">
+                    <div class="article-meta">
+                        <span class="article-category">Web3</span>
+                        <span class="article-date">January 8, 2025</span>
+                        <span class="article-author">By TechVitta Team</span>
+                    </div>
+                    <h2 class="article-title">Understanding Web 3.0: Evolution of the Internet</h2>
+                    <p class="article-excerpt">
+                        Explore the evolution of the internet and the future of decentralized web. Learn about the key 
+                        technologies and concepts driving the Web 3.0 revolution.
+                    </p>
+                    
+                    <div class="article-image">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'><rect width='800' height='400' fill='%2327ae60'/><path d='M100 300 Q200 100 300 200 T500 150 T700 250' stroke='white' stroke-width='8' fill='none'/><circle cx='100' cy='300' r='12' fill='white'/><circle cx='300' cy='200' r='12' fill='white'/><circle cx='500' cy='150' r='12' fill='white'/><circle cx='700' cy='250' r='12' fill='white'/></svg>" alt="Web 3.0 Evolution">
+                    </div>
+
+                    <div class="article-body">
+                        <p>The internet has undergone remarkable transformations since its inception. From the static pages of Web 1.0 to the interactive social platforms of Web 2.0, we now stand at the threshold of Web 3.0 - a decentralized, user-centric internet that promises to revolutionize how we interact with digital services.</p>
+
+                        <h3>The Evolution Timeline</h3>
+                        <ul>
+                            <li><strong>Web 1.0 (1990-2005):</strong> Static websites, read-only content</li>
+                            <li><strong>Web 2.0 (2005-2020):</strong> Interactive platforms, user-generated content</li>
+                            <li><strong>Web 3.0 (2020+):</strong> Decentralized, user-owned, AI-powered</li>
+                        </ul>
+
+                        <h3>Key Web 3.0 Technologies</h3>
+                        <ul>
+                            <li><strong>Blockchain:</strong> Distributed ledger technology</li>
+                            <li><strong>Smart Contracts:</strong> Self-executing agreements</li>
+                            <li><strong>Decentralized Storage:</strong> IPFS, Arweave</li>
+                            <li><strong>Cryptocurrencies:</strong> Native digital assets</li>
+                            <li><strong>DAOs:</strong> Decentralized autonomous organizations</li>
+                        </ul>
+
+                        <h3>Core Principles</h3>
+                        <ul>
+                            <li><strong>Decentralization:</strong> No single point of control</li>
+                            <li><strong>User Ownership:</strong> Control over data and identity</li>
+                            <li><strong>Trustlessness:</strong> No need for intermediaries</li>
+                            <li><strong>Transparency:</strong> Open and verifiable systems</li>
+                        </ul>
+
+                        <h3>Real-World Applications</h3>
+                        <p>Web 3.0 is already being implemented across various industries, from decentralized finance (DeFi) and non-fungible tokens (NFTs) to decentralized social networks and autonomous organizations. These applications demonstrate the practical potential of the new internet paradigm.</p>
+
+                        <h3>Challenges and Opportunities</h3>
+                        <p>While Web 3.0 offers tremendous potential, it also faces challenges including scalability, user experience, and regulatory compliance. However, these challenges present opportunities for innovation and development in the decentralized ecosystem.</p>
+                    </div>
+                </div>
+
+                <!-- Future of Asset Tokenization Article -->
+                <div class="article-content" data-article="asset-tokenization-future">
+                    <div class="article-meta">
+                        <span class="article-category">Tokenization</span>
+                        <span class="article-date">January 15, 2025</span>
+                        <span class="article-author">By TechVitta Team</span>
+                    </div>
+                    <h2 class="article-title">Future of Asset Tokenization: Transforming Traditional Markets</h2>
+                    <p class="article-excerpt">
+                        Discover how asset tokenization is transforming traditional markets. Explore the future 
+                        possibilities and opportunities in this rapidly evolving space.
+                    </p>
+                    
+                    <div class="article-image">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'><rect width='800' height='400' fill='%23f39c12'/><rect x='100' y='100' width='80' height='200' fill='white' opacity='0.9'/><rect x='200' y='80' width='80' height='220' fill='white' opacity='0.8'/><rect x='300' y='120' width='80' height='180' fill='white' opacity='0.7'/><rect x='400' y='60' width='80' height='240' fill='white' opacity='0.6'/><rect x='500' y='140' width='80' height='160' fill='white' opacity='0.5'/></svg>" alt="Future of Asset Tokenization">
+                    </div>
+
+                    <div class="article-body">
+                        <p>Asset tokenization is poised to revolutionize traditional financial markets by making previously illiquid assets accessible, tradeable, and divisible. This transformation is creating new opportunities for investors, businesses, and the global economy.</p>
+
+                        <h3>Market Transformation</h3>
+                        <p>Traditional markets are being disrupted by tokenization, which enables fractional ownership of high-value assets like real estate, art, and commodities. This democratization of investment opportunities is opening doors for smaller investors to participate in previously exclusive markets.</p>
+
+                        <h3>Emerging Trends</h3>
+                        <ul>
+                            <li><strong>Real Estate Tokenization:</strong> Fractional property ownership</li>
+                            <li><strong>Art & Collectibles:</strong> Digital ownership of physical assets</li>
+                            <li><strong>Commodity Trading:</strong> Tokenized precious metals and resources</li>
+                            <li><strong>Carbon Credits:</strong> Environmental asset tokenization</li>
+                            <li><strong>Intellectual Property:</strong> Patent and copyright tokenization</li>
+                        </ul>
+
+                        <h3>Technology Advancements</h3>
+                        <p>Advancements in blockchain technology, smart contracts, and regulatory frameworks are making tokenization more accessible and secure. These developments are reducing barriers to entry and increasing market confidence in tokenized assets.</p>
+
+                        <h3>Regulatory Landscape</h3>
+                        <p>Governments and regulatory bodies are developing frameworks to support tokenization while ensuring investor protection. These regulations will be crucial for mainstream adoption and market stability.</p>
+
+                        <h3>Future Opportunities</h3>
+                        <p>The future of asset tokenization holds immense potential for creating more liquid, transparent, and accessible markets. As technology matures and regulations evolve, we can expect to see tokenization become a standard practice across various asset classes.</p>
+                    </div>
+                </div>
+
+                <!-- Blockchain Security Article -->
+                <div class="article-content" data-article="blockchain-security">
+                    <div class="article-meta">
+                        <span class="article-category">Security</span>
+                        <span class="article-date">January 3, 2025</span>
+                        <span class="article-author">By TechVitta Team</span>
+                    </div>
+                    <h2 class="article-title">Blockchain Security Best Practices: Protecting Your Digital Assets</h2>
+                    <p class="article-excerpt">
+                        Essential security measures for protecting blockchain applications and digital assets. 
+                        Learn about common vulnerabilities and how to implement robust security practices.
+                    </p>
+                    
+                    <div class="article-image">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'><rect width='800' height='400' fill='%233498db'/><rect x='300' y='100' width='200' height='200' fill='white' opacity='0.9'/><circle cx='400' cy='200' r='60' fill='none' stroke='%233498db' stroke-width='6'/><path d='M370 200 L390 220 L430 180' stroke='%233498db' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>" alt="Blockchain Security">
+                    </div>
+
+                    <div class="article-body">
+                        <p>Blockchain security is paramount in the digital age, where the immutable nature of transactions means that security breaches can have permanent consequences. Understanding and implementing proper security measures is essential for protecting digital assets and maintaining trust in blockchain systems.</p>
+
+                        <h3>Common Security Vulnerabilities</h3>
+                        <ul>
+                            <li><strong>Smart Contract Bugs:</strong> Code vulnerabilities in smart contracts</li>
+                            <li><strong>Private Key Management:</strong> Insecure storage of private keys</li>
+                            <li><strong>51% Attacks:</strong> Majority control of network hash power</li>
+                            <li><strong>Sybil Attacks:</strong> Multiple fake identities</li>
+                            <li><strong>Reentrancy Attacks:</strong> Exploiting contract state changes</li>
+                        </ul>
+
+                        <h3>Best Practices for Users</h3>
+                        <ul>
+                            <li><strong>Hardware Wallets:</strong> Use hardware wallets for key storage</li>
+                            <li><strong>Multi-Signature:</strong> Implement multi-sig for important transactions</li>
+                            <li><strong>Regular Updates:</strong> Keep software and wallets updated</li>
+                            <li><strong>Secure Networks:</strong> Avoid public Wi-Fi for transactions</li>
+                            <li><strong>Backup Strategies:</strong> Secure backup of private keys</li>
+                        </ul>
+
+                        <h3>Developer Security Guidelines</h3>
+                        <ul>
+                            <li><strong>Code Audits:</strong> Regular security audits of smart contracts</li>
+                            <li><strong>Testing:</strong> Comprehensive testing including edge cases</li>
+                            <li><strong>Formal Verification:</strong> Mathematical proof of contract correctness</li>
+                            <li><strong>Access Controls:</strong> Proper permission and role management</li>
+                            <li><strong>Upgrade Patterns:</strong> Secure contract upgrade mechanisms</li>
+                        </ul>
+
+                        <h3>Network Security</h3>
+                        <p>Network-level security involves protecting the blockchain infrastructure itself, including node security, consensus mechanism integrity, and network protocol security. This requires coordinated efforts from developers, validators, and users.</p>
+
+                        <h3>Future Security Trends</h3>
+                        <p>As blockchain technology evolves, so do security challenges and solutions. Emerging trends include zero-knowledge proofs for privacy, quantum-resistant cryptography, and advanced consensus mechanisms that provide better security guarantees.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column - Sidebar -->
+        <div class="sidebar">
+            <h3 class="sidebar-title">Recent Articles</h3>
+            
+            <div class="sidebar-articles">
+                <div class="sidebar-article active" data-article="smart-contracts">
+                    <div class="sidebar-article-content">
+                        <h4>Smart Contracts: The Building Blocks of Decentralized Applications</h4>
+                        <p>Understanding how smart contracts work and their role in creating trustless, automated systems...</p>
+                        <div class="sidebar-meta">Blockchain • January 12, 2025</div>
+                    </div>
+                </div>
+
+                <div class="sidebar-article" data-article="tokenization">
+                    <div class="sidebar-article-content">
+                        <h4>Introduction to Tokenization: A Complete Guide</h4>
+                        <p>Learn the fundamentals of asset tokenization and how it's transforming traditional markets...</p>
+                        <div class="sidebar-meta">Tokenization • January 8, 2025</div>
+                    </div>
+                </div>
+
+                <div class="sidebar-article" data-article="web3-comparison">
+                    <div class="sidebar-article-content">
+                        <h4>Web 3.0 vs Web 2.0: The Ultimate Comparison</h4>
+                        <p>The ultimate comparison between Web 2.0 and Web 3.0 technologies...</p>
+                        <div class="sidebar-meta">Comparison • January 10, 2025</div>
+                    </div>
+                </div>
+
+                <div class="sidebar-article" data-article="web3-evolution">
+                    <div class="sidebar-article-content">
+                        <h4>Understanding Web 3.0: Evolution of the Internet</h4>
+                        <p>Explore the evolution of the internet and the future of decentralized web...</p>
+                        <div class="sidebar-meta">Web3 • January 8, 2025</div>
+                    </div>
+                </div>
+
+                <div class="sidebar-article" data-article="asset-tokenization-future">
+                    <div class="sidebar-article-content">
+                        <h4>Future of Asset Tokenization: Transforming Traditional Markets</h4>
+                        <p>Discover how asset tokenization is transforming traditional markets...</p>
+                        <div class="sidebar-meta">Tokenization • January 15, 2025</div>
+                    </div>
+                </div>
+
+                <div class="sidebar-article" data-article="blockchain-security">
+                    <div class="sidebar-article-content">
+                        <h4>Blockchain Security Best Practices: Protecting Your Digital Assets</h4>
+                        <p>Essential security measures for protecting blockchain applications...</p>
+                        <div class="sidebar-meta">Security • January 3, 2025</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Newsletter Section -->
+            <div class="newsletter-section">
+                <h4>Stay Updated</h4>
+                <p>Subscribe to our newsletter for the latest blockchain insights</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Enter email" class="newsletter-input">
+                    <button class="newsletter-btn">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>TechVitta</h3>
+                <p>Leading the blockchain revolution with innovative solutions and cutting-edge technology. Transforming businesses through decentralized applications and Web3 integration.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/techvitta.in?igsh=eGdubTlra242bjlm" target="_blank" class="social-link" title="Follow us on Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2"/>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="currentColor" stroke-width="2"/>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/company/techvitta-innovations-pvt-ltd/" target="_blank" class="social-link" title="Connect with us on LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="mailto:support@techvitta.in" class="social-link" title="Email us">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html">Blockchain Development</a></li>
+                    <li><a href="services.html">Web3 Integration</a></li>
+                    <li><a href="services.html">Smart Contracts</a></li>
+                    <li><a href="services.html">Asset Tokenization</a></li>
+                    <li><a href="services.html">DeFi Solutions</a></li>
+                    <li><a href="services.html">NFT Development</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="products.html">Our Products</a></li>
+                    <li><a href="blog-home.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#careers">Careers</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 10C21 17 12 23 12 23S3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>TECHVITTA, 3rd Floor, Plot no 19, Opp to Cyber pearl, Hitech City, Madhapur, Hyderabad, Telangana, India</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>support@techvitta.in</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1468 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.271 2.11999 4.18C2.095 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.65162C2.82196 2.44655 3.0498 2.28271 3.30379 2.17052C3.55777 2.05833 3.83233 2.00026 4.10999 2H7.10999C7.59531 1.99522 8.06691 2.16708 8.43376 2.48353C8.80061 2.79999 9.03996 3.23945 9.10999 3.72C9.23662 4.68007 9.47144 5.62273 9.80999 6.53C9.94454 6.88792 9.97366 7.27691 9.89391 7.65088C9.81415 8.02485 9.62886 8.36811 9.35999 8.64L8.08999 9.91C9.51355 12.4135 11.5865 14.4864 14.09 15.91L15.36 14.64C15.6319 14.3711 15.9751 14.1858 16.3491 14.1061C16.7231 14.0263 17.1121 14.0555 17.47 14.19C18.3773 14.5286 19.3199 14.7634 20.28 14.89C20.7658 14.9616 21.2094 15.2032 21.5265 15.5665C21.8437 15.9298 22.0122 16.3923 22 16.89V16.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>+91 (903) 515-1944</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <p>© 2025 TechVitta. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#terms">Terms of Service</a>
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#cookies">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        // Article Switching Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarArticles = document.querySelectorAll('.sidebar-article');
+            const articleContents = document.querySelectorAll('.article-content');
+
+            // Function to switch articles
+            function switchArticle(articleId) {
+                // Hide all articles
+                articleContents.forEach(article => {
+                    article.classList.remove('active');
+                });
+
+                // Show selected article
+                const targetArticle = document.querySelector(`[data-article="${articleId}"]`);
+                if (targetArticle) {
+                    targetArticle.classList.add('active');
+                }
+
+                // Update sidebar active state
+                sidebarArticles.forEach(article => {
+                    article.classList.remove('active');
+                });
+
+                const activeSidebarArticle = document.querySelector(`.sidebar-article[data-article="${articleId}"]`);
+                if (activeSidebarArticle) {
+                    activeSidebarArticle.classList.add('active');
+                }
+            }
+
+            // Add click listeners to sidebar articles
+            sidebarArticles.forEach(article => {
+                article.addEventListener('click', function() {
+                    const articleId = this.getAttribute('data-article');
+                    switchArticle(articleId);
+                });
+            });
+
+            // Newsletter subscription
+            const newsletterBtn = document.querySelector('.newsletter-btn');
+            const newsletterInput = document.querySelector('.newsletter-input');
+            
+            if (newsletterBtn && newsletterInput) {
+                newsletterBtn.addEventListener('click', function() {
+                    const email = newsletterInput.value;
+                    if (email && email.includes('@')) {
+                        alert('Thank you for subscribing to our newsletter!');
+                        newsletterInput.value = '';
+                    } else {
+                        alert('Please enter a valid email address.');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

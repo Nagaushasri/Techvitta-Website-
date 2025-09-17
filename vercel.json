@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build"
+    }
+  ],
+  "routes": [
+    { "src": "/google[0-9a-zA-Z]+\\.html", "dest": "/$0" },
+    { "handle": "filesystem" },
+    { "src": "/pages/(.*)", "dest": "/pages/$1" },
+    { "src": "/(.*)", "dest": "/$1" }
+  ]
+} 
