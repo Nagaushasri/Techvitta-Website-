@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TechVitta Blog - Blockchain & Web3 Insights</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/png" href="../assets/Logo.jpg">
+    <style>
+        /* Global center alignment and straight lines for Blogs page */
+        body {
+            text-align: center !important;
+        }
+        
+        .blog-content, .featured-article, .blog-articles, .newsletter-section {
+            text-align: center !important;
+            max-width: 1400px;
+            margin: 0 auto !important;
+            padding: 0 2rem;
+        }
+        
+        /* Blog-specific styles matching TechVitta.in design */
+        .blog-hero {
+      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+      color: var(--text-primary);
+      padding: 8rem 2rem 4rem;
+            text-align: center;
+      margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+    .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+      left: 0;
+            right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(255, 0, 198, 0.1), rgba(0, 198, 255, 0.1));
+      pointer-events: none;
+    }
+
+    .blog-hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+    .blog-hero-content h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      line-height: 1.2;
+        }
+
+    .blog-hero-content p {
+      font-size: 1.4rem;
+            opacity: 0.9;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+            line-height: 1.6;
+      color: var(--text-primary);
+    }
+
+
+    .blog-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .featured-article {
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      font-size: 3rem;
+      color: var(--text-primary);
+      margin-bottom: 2rem;
+      text-align: center;
+      background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .featured-card {
+      display: flex;
+      background: var(--bg-card);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .featured-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(255, 0, 198, 0.05), rgba(0, 198, 255, 0.05));
+      pointer-events: none;
+      border-radius: 24px;
+    }
+
+    .featured-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    .featured-image {
+      flex: 1;
+      min-height: 400px;
+    }
+
+    .featured-image img {
+            width: 100%;
+      height: 100%;
+            object-fit: cover;
+    }
+
+    .featured-content {
+      flex: 1;
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .blog-meta {
+      display: flex;
+      gap: 1rem;
+            margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .blog-category {
+      background: var(--accent-gradient);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .blog-date {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .featured-content h2 {
+      font-size: 2.2rem;
+      color: var(--text-primary);
+            margin-bottom: 1.5rem;
+      line-height: 1.3;
+        }
+
+    .featured-content p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+            margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    .read-more-btn {
+      background: var(--accent-gradient);
+            color: white;
+      padding: 1.2rem 2.5rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 700;
+            transition: all 0.3s ease;
+      display: inline-block;
+      align-self: flex-start;
+            font-size: 1.1rem;
+      box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+    }
+
+    .read-more-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .blog-card {
+      background: var(--bg-card);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+            position: relative;
+        }
+
+    .blog-card::before {
+      content: '';
+            position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(255, 0, 198, 0.03), rgba(0, 198, 255, 0.03));
+      pointer-events: none;
+      border-radius: 20px;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .blog-card-image {
+      height: 220px;
+      overflow: hidden;
+    }
+
+    .blog-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .blog-card:hover .blog-card-image img {
+      transform: scale(1.05);
+    }
+
+    .blog-card-content {
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+    .blog-card-content h3 {
+      font-size: 1.4rem;
+      color: var(--text-primary);
+            margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+
+    .blog-card-content p {
+      color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+    .blog-card-footer {
+            display: flex;
+      justify-content: space-between;
+            align-items: center;
+        }
+
+    .blog-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+    }
+
+    .blog-tag {
+      background: var(--bg-primary);
+      color: var(--text-secondary);
+      padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+      font-size: 0.8rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .read-time {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .newsletter-section {
+      background: var(--bg-card);
+      border-radius: 24px;
+      padding: 4rem 3rem;
+      text-align: center;
+      margin: 5rem 0;
+      border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+    .newsletter-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+      left: 0;
+            right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(255, 0, 198, 0.05), rgba(0, 198, 255, 0.05));
+      pointer-events: none;
+      border-radius: 24px;
+    }
+
+    .newsletter-content {
+            position: relative;
+            z-index: 2;
+        }
+
+    .newsletter-content h3 {
+            font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+    }
+
+    .newsletter-content p {
+      color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+      max-width: 500px;
+            margin: 0 auto;
+            gap: 1rem;
+        }
+
+    .newsletter-form input {
+            flex: 1;
+      padding: 1rem;
+      border: 2px solid var(--border-color);
+      border-radius: 10px;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-size: 1rem;
+    }
+
+    .newsletter-form input:focus {
+            outline: none;
+      border-color: var(--accent-cyan);
+    }
+
+    .subscribe-btn {
+      background: var(--accent-gradient);
+      color: white;
+            border: none;
+      padding: 1.2rem 2.5rem;
+      border-radius: 30px;
+            cursor: pointer;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+    }
+
+    .subscribe-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+    }
+
+
+
+    /* Footer center alignment - matching homepage */
+    footer {
+      text-align: center !important;
+    }
+    
+    .footer-content {
+      text-align: center !important;
+      display: flex;
+      justify-content: center !important;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    
+    .footer-section {
+      text-align: center !important;
+      flex: 1;
+      min-width: 250px;
+      max-width: 300px;
+    }
+    
+    .footer-content {
+      text-align: center !important;
+      display: flex;
+      justify-content: center !important;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    
+    .footer-section {
+      text-align: center !important;
+      flex: 1;
+      min-width: 250px;
+      max-width: 300px;
+    }
+    
+    .footer-section h3, .footer-section h4 {
+      text-align: center !important;
+      white-space: nowrap !important;
+    }
+    
+    .footer-section h3 {
+      font-size: 1.2rem !important;
+      margin-bottom: 1rem !important;
+    }
+    
+    .contact-info {
+      text-align: center !important;
+    }
+    
+    .contact-item {
+      text-align: center !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      margin-bottom: 0.3rem;
+      gap: 0.1rem;
+      max-width: 100%;
+    }
+    
+    .contact-item svg {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      margin: 0 auto;
+    }
+    
+    .contact-item span {
+      text-align: center !important;
+      display: block !important;
+      line-height: 1.3;
+      font-size: 0.85rem;
+      max-width: 200px;
+      margin: 0 auto;
+    }
+    
+    .footer-bottom {
+      text-align: center !important;
+    }
+    
+    .footer-bottom-content {
+      text-align: center !important;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center !important;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+      .blog-hero {
+        padding: 6rem 1rem 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+      .blog-hero-content h1 {
+        font-size: 2.8rem;
+      }
+
+      .blog-hero-content p {
+        font-size: 1.2rem;
+      }
+
+      .section-title {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .featured-card {
+        flex-direction: column;
+        margin: 0 1rem;
+      }
+
+      .featured-image {
+        min-height: 250px;
+      }
+
+      .featured-content {
+        padding: 2rem;
+      }
+
+      .featured-content h2 {
+        font-size: 1.8rem;
+      }
+
+      .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin: 0 1rem 3rem;
+      }
+
+      .newsletter-section {
+        margin: 3rem 1rem;
+        padding: 3rem 2rem;
+      }
+
+      .newsletter-content h3 {
+                font-size: 2rem;
+            }
+            
+      .newsletter-form {
+        flex-direction: column;
+        gap: 1rem;
+            }
+            
+      /* Mobile footer alignment */
+      .footer-content {
+                flex-direction: column;
+        align-items: center !important;
+      }
+      
+      .footer-section {
+        width: 100%;
+        text-align: center !important;
+        margin-bottom: 2rem;
+      }
+      
+      .contact-item {
+        text-align: center !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.5rem;
+      }
+      
+      .contact-item span {
+        white-space: normal !important;
+        text-align: center !important;
+        max-width: 260px;
+        line-height: 1.3;
+        margin: 0 auto;
+        font-size: 0.85rem;
+      }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+    <a href="../index.html" class="logo" data-page="home">TechVitta</a>
+    <!-- Hidden checkbox for CSS toggle -->
+        <input type="checkbox" id="menu-toggle" />
+    <!-- Hamburger icon -->
+        <label for="menu-toggle" class="hamburger">☰</label>
+        <div class="nav-links">
+      <a href="../index.html" data-page="home">Home</a>
+      <a href="about.html" data-page="about">About Us</a>
+      <a href="products.html" data-page="products">Our Products</a>
+      <a href="services.html" data-page="services">Services</a>
+      <a href="blogs.html" data-page="blogs" class="active">Blogs</a>
+            <a href="contact.html" data-page="contact">Contact Us</a>
+            <div class="theme-toggle">
+                <label class="theme-toggle-label" for="theme-toggle">
+                    <input type="checkbox" id="theme-toggle" class="theme-toggle-checkbox">
+                    <span class="theme-toggle-slider"></span>
+                </label>
+                <span>Toggle Theme</span>
+            </div>
+        </div>
+    </nav>
+
+  <!-- Blog Hero Section -->
+  <section class="blog-hero">
+    <div class="blog-hero-content">
+      <h1>TechVitta Blog</h1>
+      <p>Insights on Blockchain, Web3, and Digital Innovation</p>
+                </div>
+  </section>
+
+  <!-- Main Blog Content -->
+  <main class="blog-content">
+    <!-- Featured Article -->
+    <section class="featured-article">
+      <h2 class="section-title">Featured Article</h2>
+      <div class="featured-card">
+        <div class="featured-image">
+          <img src="../assets/2304.i039.013.S.m004.c13.AI generated art AI powered content creation isometric.jpg" alt="Smart Contracts">
+                    </div>
+        <div class="featured-content">
+          <div class="blog-meta">
+            <span class="blog-category">Blockchain</span>
+            <span class="blog-date">📅 January 15, 2025</span>
+                    </div>
+          <h2>Smart Contracts: The Building Blocks of Decentralized Applications</h2>
+          <p>Understanding how smart contracts work and their role in creating trustless, automated systems in the blockchain ecosystem. Learn about their key characteristics, real-world applications, and the programming languages used to build them.</p>
+          <a href="blog-detail.html?slug=smart-contracts-building-blocks" class="read-more-btn">Read Full Article</a>
+                    </div>
+                </div>
+    </section>
+
+
+
+    <!-- Blog Grid -->
+    <section class="blog-articles">
+      <h2 class="section-title">Latest Articles</h2>
+      <div class="blog-grid" id="blogGrid">
+        <!-- Blog articles will be loaded here by JavaScript -->
+                    </div>
+    </section>
+
+            <!-- Newsletter Section -->
+    <section class="newsletter-section">
+      <div class="newsletter-content">
+        <h3>Stay Updated</h3>
+        <p>Get the latest articles on blockchain and Web3 delivered to your inbox.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Enter your email address" required>
+          <button type="submit" class="subscribe-btn">Subscribe</button>
+        </form>
+                </div>
+    </section>
+  </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+        <h3 style="white-space: nowrap; text-align: center; background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;">TechVitta Innovations Pvt Ltd</h3>
+                <p>Leading the blockchain revolution with innovative solutions and cutting-edge technology. Transforming businesses through decentralized applications and Web3 integration.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/techvitta.in?igsh=eGdubTlra242bjlm" target="_blank" class="social-link" title="Follow us on Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2"/>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="currentColor" stroke-width="2"/>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/company/techvitta-innovations-pvt-ltd/" target="_blank" class="social-link" title="Connect with us on LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="mailto:support@techvitta.in" class="social-link" title="Email us">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html">Blockchain Development</a></li>
+                    <li><a href="services.html">Web3 Integration</a></li>
+                    <li><a href="services.html">Smart Contracts</a></li>
+                    <li><a href="services.html">Asset Tokenization</a></li>
+                    <li><a href="services.html">DeFi Solutions</a></li>
+                    <li><a href="services.html">NFT Development</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="products.html">Our Products</a></li>
+          <li><a href="blogs.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#careers">Careers</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 10C21 17 12 23 12 23S3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>TECHVITTA, 3rd Floor, Plot no 19, Opp to Cyber pearl, Hitech City, Madhapur, Hyderabad, Telangana, India</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>support@techvitta.in</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1468 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.271 2.11999 4.18C2.095 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.65162C2.82196 2.44655 3.0498 2.28271 3.30379 2.17052C3.55777 2.05833 3.83233 2.00026 4.10999 2H7.10999C7.59531 1.99522 8.06691 2.16708 8.43376 2.48353C8.80061 2.79999 9.03996 3.23945 9.10999 3.72C9.23662 4.68007 9.47144 5.62273 9.80999 6.53C9.94454 6.88792 9.97366 7.27691 9.89391 7.65088C9.81415 8.02485 9.62886 8.36811 9.35999 8.64L8.08999 9.91C9.51355 12.4135 11.5865 14.4864 14.09 15.91L15.36 14.64C15.6319 14.3711 15.9751 14.1858 16.3491 14.1061C16.7231 14.0263 17.1121 14.0555 17.47 14.19C18.3773 14.5286 19.3199 14.7634 20.28 14.89C20.7658 14.9616 21.2094 15.2032 21.5265 15.5665C21.8437 15.9298 22.0122 16.3923 22 16.89V16.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>+91 (903) 515-1944</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+        <p>© 2025 TechVitta Innovations Pvt Ltd. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#terms">Terms of Service</a>
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#cookies">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+    // Blog data
+    const blogData = [
+      {
+        id: 1,
+        title: "Smart Contracts: The Building Blocks of Decentralized Applications",
+        slug: "smart-contracts-building-blocks",
+        date: "2025-01-15",
+        author: "TechVitta Team",
+        category: "Blockchain",
+        excerpt: "Comprehensive guide to smart contracts covering development, security, applications, and future trends. Learn how these self-executing programs are revolutionizing digital agreements and automation.",
+        thumbnail: "../assets/2304.i039.013.S.m004.c13.AI generated art AI powered content creation isometric.jpg",
+        tags: ["Smart Contracts", "Blockchain", "DeFi", "Web3", "Ethereum", "Programming", "Security", "Development"],
+        readTime: "15 min read"
+      },
+      {
+        id: 2,
+        title: "Introduction to Tokenization: A Complete Guide",
+        slug: "introduction-tokenization-guide",
+        date: "2025-01-12",
+        author: "TechVitta Team",
+        category: "Tokenization",
+        excerpt: "Comprehensive guide to asset tokenization, covering benefits, implementation, market impact, and future outlook. Learn how blockchain is revolutionizing traditional asset ownership.",
+        thumbnail: "../assets/Tokenization.jpg",
+        tags: ["Tokenization", "Blockchain", "Assets", "Investment", "DeFi", "Real Estate", "Smart Contracts"],
+        readTime: "12 min read"
+      },
+      {
+        id: 3,
+        title: "Web 3.0 vs Web 2.0: The Ultimate Comparison",
+        slug: "web3-vs-web2-comparison",
+        date: "2025-01-10",
+        author: "TechVitta Team",
+        category: "Web3",
+        excerpt: "Comprehensive analysis of Web 2.0 vs Web 3.0 covering architecture, data ownership, economic models, security, scalability, and future implications. Complete guide to understanding the internet's evolution.",
+        thumbnail: "../assets/Web3 Application.jpg",
+        tags: ["Web3", "Web2", "Comparison", "Decentralization", "Blockchain", "Privacy", "Data Ownership", "Cryptocurrency", "DeFi", "NFTs"],
+        readTime: "20 min read"
+      },
+      {
+        id: 4,
+        title: "Blockchain Security Best Practices: Protecting Your Digital Assets",
+        slug: "blockchain-security-best-practices",
+        date: "2025-01-08",
+        author: "TechVitta Team",
+        category: "Security",
+        excerpt: "Comprehensive guide to blockchain security covering cryptographic foundations, smart contract vulnerabilities, wallet security, DeFi risks, and emerging security technologies. Essential for protecting digital assets.",
+        thumbnail: "../assets/security.jpg",
+        tags: ["Security", "Blockchain", "Cryptography", "Smart Contracts", "DeFi", "Wallet Security", "Private Keys", "Auditing", "Vulnerabilities", "Compliance"],
+        readTime: "25 min read"
+      },
+      {
+        id: 5,
+        title: "The Future of Asset Tokenization: Transforming Traditional Markets",
+        slug: "future-asset-tokenization",
+        date: "2025-01-05",
+        author: "TechVitta Team",
+        category: "Tokenization",
+        excerpt: "Comprehensive analysis of how asset tokenization is revolutionizing traditional markets, featuring market projections, technological innovations, regulatory developments, and future opportunities across real estate, art, commodities, and emerging sectors.",
+        thumbnail: "../assets/Tokenization3.jpg",
+        tags: ["Tokenization", "Future", "Markets", "Investment", "Blockchain", "Real Estate", "Art", "Commodities", "AI", "Regulation"],
+        readTime: "18 min read"
+      },
+      {
+        id: 6,
+        title: "The Evolution of Web3: From Concept to Reality",
+        slug: "web3-evolution-concept-reality",
+        date: "2025-01-03",
+        author: "TechVitta Team",
+        category: "Web3",
+        excerpt: "Comprehensive analysis of Web3's evolution from conceptual framework to practical reality, covering technological milestones, key innovations, current applications, and future prospects in the decentralized web ecosystem.",
+        thumbnail: "../assets/Web3 Application.jpg",
+        tags: ["Web3", "Evolution", "Blockchain", "Decentralization", "Future", "dApps", "DeFi", "NFTs", "Smart Contracts", "Innovation"],
+        readTime: "22 min read"
+      },
+      {
+        id: 7,
+        title: "Winning the War on Document Forgery in the Digital Economy! (Part 1)",
+        slug: "document-forgery-digital-economy-part1",
+        date: "2025-01-12",
+        author: "TechVitta Team",
+        category: "Security",
+        excerpt: "Comprehensive analysis of document forgery challenges in the digital economy, covering blockchain solutions, cryptographic verification, digital identity systems, and emerging anti-fraud technologies. Essential guide for understanding modern document security.",
+        thumbnail: "../assets/security.jpg",
+        tags: ["Document Forgery", "Digital Economy", "Blockchain", "Cryptography", "Security", "Authentication", "Verification", "AI", "Biometrics", "Compliance"],
+        readTime: "28 min read"
+      },
+      {
+        id: 8,
+        title: "Winning the War on Document Forgery in the Digital Economy! (Part 2)",
+        slug: "document-forgery-digital-economy-part2",
+        date: "2025-01-15",
+        author: "TechVitta Team",
+        category: "Security",
+        excerpt: "Advanced implementation strategies, real-world case studies, and cutting-edge technologies for document forgery prevention. Deep dive into practical solutions, regulatory frameworks, and future innovations in digital document security.",
+        thumbnail: "../assets/security.jpg",
+        tags: ["Document Forgery", "Digital Economy", "Implementation", "Case Studies", "Advanced Technologies", "Regulatory Compliance", "AI", "Blockchain", "Biometrics", "Future Trends"],
+        readTime: "32 min read"
+      },
+      {
+        id: 9,
+        title: "Winning the War on Document Forgery in the Digital Economy! (Part 3)",
+        slug: "document-forgery-digital-economy-part3",
+        date: "2025-01-18",
+        author: "TechVitta Team",
+        category: "Security",
+        excerpt: "Future-focused analysis of document forgery prevention, covering next-generation technologies, global digital identity ecosystems, quantum computing impacts, and the evolution of trust in the digital economy. The definitive guide to tomorrow's document security.",
+        thumbnail: "../assets/security.jpg",
+        tags: ["Document Forgery", "Digital Economy", "Future Technologies", "Quantum Computing", "AI", "Global Identity", "Trust", "Innovation", "Digital Transformation", "Security"],
+        readTime: "35 min read"
+      },
+      {
+        id: 10,
+        title: "Smart Contracts – The Complete Guide On Smart Contract Platforms",
+        slug: "smart-contracts-complete-guide-platforms",
+        date: "2025-01-20",
+        author: "TechVitta Team",
+        category: "Blockchain",
+        excerpt: "Comprehensive guide to smart contracts covering all major platforms, programming languages, development tools, security best practices, and real-world applications. Complete resource for understanding and implementing smart contract solutions.",
+        thumbnail: "../assets/blockchain consulting.jpg",
+        tags: ["Smart Contracts", "Blockchain", "Ethereum", "DeFi", "Programming", "Security", "Development", "Platforms", "Solidity", "Web3"],
+        readTime: "30 min read"
+      },
+      {
+        id: 11,
+        title: "What is Hashing: The Complete Guide to Cryptographic Hash Functions",
+        slug: "what-is-hashing-cryptographic-hash-functions",
+        date: "2025-01-22",
+        author: "TechVitta Team",
+        category: "Cryptography",
+        excerpt: "Comprehensive guide to hashing covering cryptographic hash functions, algorithms, applications, security properties, and real-world use cases. Essential knowledge for understanding blockchain, data integrity, and digital security.",
+        thumbnail: "../assets/data-security-locking-a-folder.jpg",
+        tags: ["Hashing", "Cryptography", "Hash Functions", "Security", "Blockchain", "Data Integrity", "SHA-256", "MD5", "Digital Signatures", "Computer Science"],
+        readTime: "25 min read"
+      },
+      {
+        id: 12,
+        title: "What is Consensus in Blockchain: The Complete Guide to Consensus Mechanisms",
+        slug: "what-is-consensus-blockchain-mechanisms",
+        date: "2025-01-24",
+        author: "TechVitta Team",
+        category: "Blockchain",
+        excerpt: "Comprehensive guide to blockchain consensus mechanisms covering Proof of Work, Proof of Stake, Delegated Proof of Stake, Practical Byzantine Fault Tolerance, and emerging consensus algorithms. Essential knowledge for understanding blockchain security and decentralization.",
+        thumbnail: "../assets/Blockchain Platform Development.jpg",
+        tags: ["Consensus", "Blockchain", "Proof of Work", "Proof of Stake", "DPoS", "PBFT", "Decentralization", "Security", "Cryptocurrency", "Distributed Systems"],
+        readTime: "28 min read"
+      },
+      {
+        id: 13,
+        title: "What are Distributed and Decentralized Ledgers: The Complete Guide to Ledger Technology",
+        slug: "what-are-distributed-decentralized-ledgers",
+        date: "2025-01-26",
+        author: "TechVitta Team",
+        category: "Blockchain",
+        excerpt: "Comprehensive guide to distributed and decentralized ledgers covering blockchain technology, DLT architectures, consensus mechanisms, use cases, and implementation strategies. Essential knowledge for understanding modern ledger systems.",
+        thumbnail: "../assets/blockchain security.jpg",
+        tags: ["Distributed Ledgers", "Decentralized Ledgers", "Blockchain", "DLT", "Consensus", "Cryptocurrency", "Smart Contracts", "Transparency", "Security", "Innovation"],
+        readTime: "30 min read"
+      },
+      {
+        id: 14,
+        title: "How Does a Blockchain Work: The Complete Guide to Blockchain Technology",
+        slug: "how-does-blockchain-work",
+        date: "2025-01-27",
+        author: "TechVitta Team",
+        category: "Blockchain",
+        excerpt: "Comprehensive guide explaining how blockchain technology works, covering blocks, hashing, consensus mechanisms, mining, transactions, and the complete blockchain process. Essential knowledge for understanding blockchain fundamentals.",
+        thumbnail: "../assets/27968.jpg",
+        tags: ["Blockchain", "How It Works", "Blocks", "Hashing", "Mining", "Consensus", "Transactions", "Cryptography", "Decentralization", "Technology"],
+        readTime: "32 min read"
+      },
+      {
+        id: 15,
+        title: "What is Blockchain: The Complete Guide to Blockchain Technology Fundamentals",
+        slug: "what-is-blockchain",
+        date: "2025-01-28",
+        author: "TechVitta Team",
+        category: "Blockchain",
+        excerpt: "Comprehensive guide to blockchain technology fundamentals covering what blockchain is, how it works, key concepts, benefits, use cases, and future potential. Essential knowledge for understanding blockchain basics.",
+        thumbnail: "../assets/343347-PAKDPD-299.jpg",
+        tags: ["Blockchain", "Fundamentals", "Technology", "Cryptocurrency", "Decentralization", "Security", "Distributed Ledger", "Innovation", "Digital Assets", "Trust"],
+        readTime: "28 min read"
+      },
+      {
+        id: 16,
+        title: "What Are Different Types of Blockchain: Complete Guide to Blockchain Classifications",
+        slug: "what-are-different-types-blockchain",
+        date: "2025-01-29",
+        author: "TechVitta Team",
+        category: "Blockchain",
+        excerpt: "Comprehensive guide to different types of blockchain networks covering public, private, consortium, and hybrid blockchains. Learn about permissioned vs permissionless, consensus mechanisms, and use cases for each type.",
+        thumbnail: "../assets/370856-PBCQHL-359.jpg",
+        tags: ["Blockchain Types", "Public Blockchain", "Private Blockchain", "Consortium Blockchain", "Permissioned", "Permissionless", "Consensus", "Networks", "Classification", "Architecture"],
+        readTime: "26 min read"
+      }
+    ];
+
+    // Function to render blog articles
+    function renderBlogArticles(articles = blogData) {
+      const blogGrid = document.getElementById('blogGrid');
+      blogGrid.innerHTML = '';
+
+      articles.forEach(article => {
+        const articleCard = document.createElement('div');
+        articleCard.className = 'blog-card';
+        articleCard.innerHTML = `
+          <div class="blog-card-image">
+            <img src="${article.thumbnail}" alt="${article.title}">
+          </div>
+          <div class="blog-card-content">
+            <div class="blog-meta">
+              <span class="blog-category">${article.category}</span>
+              <span class="blog-date">📅 ${new Date(article.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+            </div>
+            <h3>${article.title}</h3>
+            <p>${article.excerpt}</p>
+            <div class="blog-card-footer">
+              <div class="blog-tags">
+                ${article.tags.slice(0, 3).map(tag => `<span class="blog-tag">${tag}</span>`).join('')}
+              </div>
+              <span class="read-time">${article.readTime}</span>
+            </div>
+          </div>
+        `;
+
+        // Add click event to navigate to article detail
+        articleCard.addEventListener('click', () => {
+          window.location.href = `blog-detail.html?slug=${article.slug}`;
+        });
+
+        blogGrid.appendChild(articleCard);
+      });
+    }
+
+
+
+    // Initialize blog articles on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      renderBlogArticles();
+
+      // Newsletter form submission
+      const newsletterForm = document.querySelector('.newsletter-form');
+      newsletterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = this.querySelector('input[type="email"]').value;
+        alert(`Thank you for subscribing with ${email}! You'll receive our latest articles soon.`);
+        this.reset();
+      });
+        });
+    </script>
+</body>
+
+</html>
