@@ -1,273 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Our Products - TechVitta</title>
-    <link rel="stylesheet" href="../style.css">
-    <link rel="icon" type="image/png" href="../assets/Logo.jpg">
-    <style>
-        /* Global center alignment and straight lines for Products page */
-        body {
-            text-align: center !important;
-        }
-        
-        .products-content, .product-categories, .products-grid, 
-        .product-cta {
-            text-align: center !important;
-            max-width: 1200px;
-            margin: 0 auto !important;
-            padding: 2rem;
-        }
-        
-        .gradient-heading, .section-title {
-            text-align: center !important;
-            margin: 0 auto 2rem auto !important;
-        }
-        
-        .products-intro {
-            text-align: center !important;
-            max-width: 800px;
-            margin: 0 auto 3rem auto !important;
-            line-height: 1.6;
-        }
-        
-        .category-tabs {
-            display: flex !important;
-            justify-content: center !important;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .tab-btn {
-            text-align: center !important;
-        }
-        
-        .products-grid {
-            display: flex !important;
-            justify-content: center !important;
-            align-items: stretch;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-        
-        .product-card {
-            text-align: center !important;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex: 1;
-            min-width: 300px;
-            max-width: 350px;
-            margin: 0 auto;
-        }
-        
-        .product-content {
-            text-align: center !important;
-            padding: 2rem;
-        }
-        
-        .product-card h3, .product-card p {
-            text-align: center !important;
-        }
-        
-        .product-features {
-            text-align: center !important;
-            list-style: none;
-            padding: 0;
-        }
-        
-        .product-features li {
-            text-align: center !important;
-            margin: 0.5rem 0;
-        }
-        
-        .product-meta {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin: 1rem 0;
-        }
-        
-        .product-actions {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .btn-product {
-            text-align: center !important;
-        }
-        
-        .product-cta {
-            text-align: center !important;
-            max-width: 800px;
-            margin: 0 auto !important;
-            padding: 3rem 2rem;
-        }
-        
-        .cta-content {
-            text-align: center !important;
-        }
-        
-        .gradient-text {
-            text-align: center !important;
-        }
-        
-        /* Mobile responsive center alignment */
-        @media (max-width: 768px) {
-            .products-content, .product-categories, .products-grid, 
-            .product-cta {
-                padding: 1rem !important;
-                text-align: center !important;
-            }
-            
-            .products-grid {
-                flex-direction: column;
-                align-items: center !important;
-            }
-            
-            .product-card {
-                width: 100%;
-                max-width: 100%;
-                margin: 0 auto !important;
-            }
-            
-            .category-tabs {
-                flex-direction: column;
-                align-items: center !important;
-            }
-            
-            .gradient-heading {
-                font-size: 2.5rem !important;
-            }
-            
-            .product-actions {
-                flex-direction: column;
-                align-items: center !important;
-            }
-        }
-        
-        /* Force center alignment for all elements */
-        .products-content * {
-            text-align: center !important;
-        }
-        
-        /* Exceptions for input elements */
-        input, textarea, select {
-            text-align: left !important;
-        }
-        
-        /* Footer center alignment - matching homepage */
-        footer {
-            text-align: center !important;
-        }
-        
-        .footer-content {
-            text-align: center !important;
-            display: flex;
-            justify-content: center !important;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-        
-        .footer-section {
-            text-align: center !important;
-            flex: 1;
-            min-width: 250px;
-            max-width: 300px;
-        }
-        
-        .footer-section h3, .footer-section h4 {
-            text-align: center !important;
-            white-space: nowrap !important;
-        }
-        
-        .footer-section h3 {
-            font-size: 1.2rem !important;
-            margin-bottom: 1rem !important;
-        }
-        
-        .contact-info {
-            text-align: center !important;
-        }
-        
-        .contact-item {
-            text-align: center !important;
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            justify-content: center !important;
-            margin-bottom: 0.3rem;
-            gap: 0.1rem;
-            max-width: 100%;
-        }
-        
-        .contact-item svg {
-            flex-shrink: 0;
-            width: 16px;
-            height: 16px;
-            margin: 0 auto;
-        }
-        
-        .contact-item span {
-            text-align: center !important;
-            display: block !important;
-            line-height: 1.3;
-            font-size: 0.85rem;
-            max-width: 200px;
-            margin: 0 auto;
-        }
-        
-        .footer-bottom {
-            text-align: center !important;
-        }
-        
-        .footer-bottom-content {
-            text-align: center !important;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center !important;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        /* Mobile footer alignment */
-        @media (max-width: 768px) {
-            .footer-content {
-                flex-direction: column;
-                align-items: center !important;
-            }
-            
-            .footer-section {
-                width: 100%;
-                text-align: center !important;
-                margin-bottom: 2rem;
-            }
-            
-            .contact-item {
-                text-align: center !important;
-                flex-direction: column !important;
-                align-items: center !important;
-                justify-content: center !important;
-                gap: 0.5rem;
-            }
-            
-            .contact-item span {
-                white-space: normal !important;
-                text-align: center !important;
-                max-width: 260px;
-                line-height: 1.3;
-                margin: 0 auto;
-                font-size: 0.85rem;
-=======
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -660,50 +392,12 @@
             .category-tabs {
                 flex-direction: column;
                 align-items: center;
->>>>>>> master
             }
         }
     </style>
 </head>
 
 <body>
-<<<<<<< HEAD
-    <!-- Navbar -->
-    <nav class="navbar">
-        <a href="../index.html" class="logo">TechVitta</a>
-        <input type="checkbox" id="menu-toggle" />
-        <label for="menu-toggle" class="hamburger">☰</label>
-        <div class="nav-links">
-            <a href="../index.html">Home</a>
-            <a href="about.html">About Us</a>
-            <a href="products.html" class="active">Our Products</a>
-            <a href="services.html">Services</a>
-            <a href="blogs.html">Blogs</a>
-            <a href="contact.html" data-page="contact">Contact Us</a>
-            <div class="theme-toggle">
-                <label class="theme-toggle-label" for="theme-toggle">
-                    <input type="checkbox" id="theme-toggle" class="theme-toggle-checkbox">
-                    <span class="theme-toggle-slider"></span>
-                </label>
-                <span>Toggle Theme</span>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main id="content">
-        <section class="products-content">
-            <h2 class="gradient-heading">Our Products</h2>
-            <p class="products-intro">
-                Discover our innovative blockchain solutions designed to transform your business operations 
-                and enhance security. Our products are built with cutting-edge technology and designed for 
-                real-world applications.
-            </p>
-
-            <!-- Product Categories -->
-            <section class="product-categories">
-                <h3 class="section-title">Product Categories</h3>
-=======
     <!-- Navigation -->
     <nav class="navbar">
         <div class="navbar-container">
@@ -735,7 +429,6 @@
             <!-- Product Categories -->
             <section class="product-categories">
         <h2 class="section-title">Product Categories</h2>
->>>>>>> master
                 <div class="category-tabs">
                     <button class="tab-btn active" data-category="all">All Products</button>
                     <button class="tab-btn" data-category="verification">Verification</button>
@@ -744,48 +437,15 @@
                 </div>
             </section>
 
-<<<<<<< HEAD
-            <!-- Products Grid -->
-            <section class="products-grid">
-                <!-- Product 1 -->
-=======
     <!-- Products Section -->
     <section class="products-section">
         <div class="products-grid">
             <!-- Product 1: Document Verification System -->
->>>>>>> master
                 <article class="product-card" data-category="verification">
                     <div class="product-image">
                         <img src="../assets/data-security-locking-a-folder.jpg" alt="Document Verification System">
                     </div>
                     <div class="product-content">
-<<<<<<< HEAD
-                        <div class="product-badge">New</div>
-                        <h3>Document Verification System</h3>
-                        <p class="product-description">
-                            A secure blockchain-based system for issuing and verifying documents with complete 
-                            traceability and immutability.
-                        </p>
-                        <ul class="product-features">
-                            <li><i class="fas fa-check"></i> Issue digital certificates</li>
-                            <li><i class="fas fa-check"></i> Verify document authenticity</li>
-                            <li><i class="fas fa-check"></i> Manage issuer dashboard</li>
-                            <li><i class="fas fa-check"></i> Track document history</li>
-                            <li><i class="fas fa-check"></i> Ensure data integrity</li>
-                        </ul>
-                        <div class="product-meta">
-                            <span class="product-status">In Development</span>
-                            <span class="product-timeline">Q2 2025</span>
-                        </div>
-                        <div class="product-actions">
-                            <a href="#" class="btn-product primary">Coming Soon</a>
-                            <a href="contact.html" class="btn-product secondary">Contact Sales</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Product 2 -->
-=======
                     <div class="product-badge new">NEW</div>
                     <h3 class="product-title">Document Verification System</h3>
                     <p>A secure blockchain-based system for issuing and verifying documents with complete traceability and immutability.</p>
@@ -803,39 +463,11 @@
                 </article>
 
             <!-- Product 2: Asset Tokenization Platform -->
->>>>>>> master
                 <article class="product-card" data-category="tokenization">
                     <div class="product-image">
                         <img src="../assets/Tokenization3.jpg" alt="Asset Tokenization Platform">
                     </div>
                     <div class="product-content">
-<<<<<<< HEAD
-                        <div class="product-badge">Featured</div>
-                        <h3>Asset Tokenization Platform</h3>
-                        <p class="product-description">
-                            Transform real-world assets into digital tokens with our comprehensive platform 
-                            for enhanced liquidity and accessibility.
-                        </p>
-                        <ul class="product-features">
-                            <li><i class="fas fa-check"></i> Create digital assets</li>
-                            <li><i class="fas fa-check"></i> Manage token economics</li>
-                            <li><i class="fas fa-check"></i> Enable secondary trading</li>
-                            <li><i class="fas fa-check"></i> Ensure regulatory compliance</li>
-                            <li><i class="fas fa-check"></i> Provide liquidity solutions</li>
-                        </ul>
-                        <div class="product-meta">
-                            <span class="product-status">Beta Testing</span>
-                            <span class="product-timeline">Q1 2025</span>
-                        </div>
-                        <div class="product-actions">
-                            <a href="#" class="btn-product primary">Request Demo</a>
-                            <a href="contact.html" class="btn-product secondary">Learn More</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Product 3 -->
-=======
                     <div class="product-badge featured">FEATURED</div>
                     <h3 class="product-title">Asset Tokenization Platform</h3>
                     <p>Transform real-world assets into digital tokens with our comprehensive platform for enhanced liquidity and accessibility.</p>
@@ -853,144 +485,11 @@
                 </article>
 
             <!-- Product 3: Smart Contract Factory -->
->>>>>>> master
                 <article class="product-card" data-category="smart-contracts">
                     <div class="product-image">
                         <img src="../assets/smartcontract development.jpg" alt="Smart Contract Factory">
                     </div>
                     <div class="product-content">
-<<<<<<< HEAD
-                        <div class="product-badge">Popular</div>
-                        <h3>Smart Contract Factory</h3>
-                        <p class="product-description">
-                            Automate your business processes with customizable smart contracts designed 
-                            for various use cases and industries.
-                        </p>
-                        <ul class="product-features">
-                            <li><i class="fas fa-check"></i> Pre-built contract templates</li>
-                            <li><i class="fas fa-check"></i> Custom contract development</li>
-                            <li><i class="fas fa-check"></i> Security auditing</li>
-                            <li><i class="fas fa-check"></i> Deployment management</li>
-                            <li><i class="fas fa-check"></i> Monitoring and analytics</li>
-                        </ul>
-                        <div class="product-meta">
-                            <span class="product-status">Available</span>
-                            <span class="product-timeline">Now</span>
-                        </div>
-                        <div class="product-actions">
-                            <a href="#" class="btn-product primary">Get Started</a>
-                            <a href="contact.html" class="btn-product secondary">Contact Us</a>
-                        </div>
-                    </div>
-                </article>
-
-            </section>
-
-
-            <!-- CTA Section -->
-            <section class="product-cta">
-                <div class="cta-content">
-                    <h3 class="gradient-text">Ready to Get Started?</h3>
-                    <p>Contact our team to discuss your requirements and find the perfect blockchain solution for your business.</p>
-                    <div class="cta-actions">
-                        <a href="contact.html" class="btn-product primary large">Contact Sales</a>
-                        <a href="services.html" class="btn-product secondary large">View Services</a>
-                    </div>
-                </div>
-            </section>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3 style="white-space: nowrap; text-align: center; background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;">TechVitta Innovations Pvt Ltd</h3>
-                <p>Leading the blockchain revolution with innovative solutions and cutting-edge technology. Transforming businesses through decentralized applications and Web3 integration.</p>
-                <div class="social-links">
-                    <a href="https://www.instagram.com/techvitta.in?igsh=eGdubTlra242bjlm" target="_blank" class="social-link" title="Follow us on Instagram">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2"/>
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="currentColor" stroke-width="2"/>
-                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </a>
-                    <a href="https://www.linkedin.com/company/techvitta-innovations-pvt-ltd/" target="_blank" class="social-link" title="Connect with us on LinkedIn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </a>
-                    <a href="mailto:support@techvitta.in" class="social-link" title="Email us">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Services</h4>
-                <ul>
-                    <li><a href="services.html">Blockchain Development</a></li>
-                    <li><a href="services.html">Web3 Integration</a></li>
-                    <li><a href="services.html">Smart Contracts</a></li>
-                    <li><a href="services.html">Asset Tokenization</a></li>
-                    <li><a href="services.html">DeFi Solutions</a></li>
-                    <li><a href="services.html">NFT Development</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="products.html">Our Products</a></li>
-                    <li><a href="blogs.html">Blog</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="#careers">Careers</a></li>
-                    <li><a href="#privacy">Privacy Policy</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Contact Info</h4>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 10C21 17 12 23 12 23S3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <span>TECHVITTA, 3rd Floor, Plot no 19, Opp to Cyber pearl, Hitech City, Madhapur, Hyderabad, Telangana, India</span>
-                    </div>
-                    <div class="contact-item">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <span>support@techvitta.in</span>
-                    </div>
-                    <div class="contact-item">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1468 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.271 2.11999 4.18C2.095 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.65162C2.82196 2.44655 3.0498 2.28271 3.30379 2.17052C3.55777 2.05833 3.83233 2.00026 4.10999 2H7.10999C7.59531 1.99522 8.06691 2.16708 8.43376 2.48353C8.80061 2.79999 9.03996 3.23945 9.10999 3.72C9.23662 4.68007 9.47144 5.62273 9.80999 6.53C9.94454 6.88792 9.97366 7.27691 9.89391 7.65088C9.81415 8.02485 9.62886 8.36811 9.35999 8.64L8.08999 9.91C9.51355 12.4135 11.5865 14.4864 14.09 15.91L15.36 14.64C15.6319 14.3711 15.9751 14.1858 16.3491 14.1061C16.7231 14.0263 17.1121 14.0555 17.47 14.19C18.3773 14.5286 19.3199 14.7634 20.28 14.89C20.7658 14.9616 21.2094 15.2032 21.5265 15.5665C21.8437 15.9298 22.0122 16.3923 22 16.89V16.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <span>+91 (903) 515-1944</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <div class="footer-bottom-content">
-                <p>© 2025 TechVitta Innovations Pvt Ltd. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="#terms">Terms of Service</a>
-                    <a href="#privacy">Privacy Policy</a>
-                    <a href="#cookies">Cookie Policy</a>
-                </div>
-=======
                     <div class="product-badge popular">POPULAR</div>
                     <h3 class="product-title">Smart Contract Factory</h3>
                     <p>Automate your business processes with customizable smart contracts designed for various use cases and industries.</p>
@@ -1022,15 +521,10 @@
             </div>
         <div class="footer-bottom">
                 <p>&copy; 2025 TechVitta Blog. All rights reserved.</p>
->>>>>>> master
             </div>
         </div>
     </footer>
 
-<<<<<<< HEAD
-    <script src="../script.js"></script>
-    <script>
-=======
     <script>
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -1071,7 +565,6 @@
             });
         }
 
->>>>>>> master
         // Product category filtering
         document.addEventListener('DOMContentLoaded', function() {
             const tabBtns = document.querySelectorAll('.tab-btn');
@@ -1097,11 +590,6 @@
                 });
             });
         });
-<<<<<<< HEAD
-    </script>
-</body>
-
-=======
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1130,5 +618,4 @@
         });
     </script>
 </body>
->>>>>>> master
 </html>
