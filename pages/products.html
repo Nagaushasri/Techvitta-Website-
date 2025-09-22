@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
 
 <head>
     <meta charset="UTF-8">
@@ -266,12 +267,407 @@
                 line-height: 1.3;
                 margin: 0 auto;
                 font-size: 0.85rem;
+=======
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Products - TechVitta</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/png" href="../assets/Logo.jpg">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #00ffff, #ff00c6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .navbar-nav {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 2rem;
+        }
+
+        .navbar-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav a:hover {
+            color: #00ffff;
+        }
+
+        .theme-toggle {
+            background: linear-gradient(45deg, #ff00c6, #00c6ff);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .products-hero {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #00ffff, #ff00c6, #00c6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #cccccc;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .product-categories {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #00ffff, #ff00c6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: linear-gradient(45deg, #ff00c6, #00c6ff);
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
+
+        .products-section {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+        
+        .product-card {
+            background: rgba(17, 17, 17, 0.9);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            width: 350px;
+            flex: 0 0 350px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-content {
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+                flex-direction: column;
+        }
+
+        .product-badge {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            align-self: flex-start;
+        }
+
+        .product-badge.new {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+        }
+
+        .product-badge.featured {
+            background: linear-gradient(45deg, #ff00c6, #ff6b9d);
+            color: white;
+        }
+
+        .product-badge.popular {
+            background: linear-gradient(45deg, #9d4edd, #c77dff);
+            color: white;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00ffff, #ff00c6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        .product-content p {
+            color: #cccccc;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .product-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+            flex: 1;
+            text-align: center;
+        }
+
+        .product-features li {
+            color: #ffffff;
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .product-features li::before {
+            content: "✓";
+            color: #00c6ff;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .product-status {
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 2px solid;
+        }
+
+        .status-badge.development {
+            border-color: #00c6ff;
+            color: #00c6ff;
+        }
+
+        .status-badge.beta {
+            border-color: #ff00c6;
+            color: #ff00c6;
+        }
+
+        .status-badge.available {
+            border-color: #9d4edd;
+            color: #9d4edd;
+        }
+
+        .footer {
+            background: #2a2a2a;
+            color: #ffffff;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00ffff, #ff00c6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: #ffffff;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #00ffff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .navbar-nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .navbar-nav.active {
+                display: flex;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .products-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .product-card {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .category-tabs {
+                flex-direction: column;
+                align-items: center;
+>>>>>>> master
             }
         }
     </style>
 </head>
 
 <body>
+<<<<<<< HEAD
     <!-- Navbar -->
     <nav class="navbar">
         <a href="../index.html" class="logo">TechVitta</a>
@@ -307,6 +703,39 @@
             <!-- Product Categories -->
             <section class="product-categories">
                 <h3 class="section-title">Product Categories</h3>
+=======
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">TECHVITTA</a>
+            <ul class="navbar-nav" id="navLinks">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About Us</a></li>
+                <li><a href="../products.html">Our Products</a></li>
+                <li><a href="../services.html">Services</a></li>
+                <li><a href="../blogs.html">Blogs</a></li>
+                <li><a href="../contact.html">Contact Us</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+                Toggle Theme
+            </button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="products-hero">
+        <h1 class="hero-title">Our Products</h1>
+        <p class="hero-subtitle">Discover our innovative blockchain solutions designed to transform your business operations and enhance security.</p>
+    </section>
+
+            <!-- Product Categories -->
+            <section class="product-categories">
+        <h2 class="section-title">Product Categories</h2>
+>>>>>>> master
                 <div class="category-tabs">
                     <button class="tab-btn active" data-category="all">All Products</button>
                     <button class="tab-btn" data-category="verification">Verification</button>
@@ -315,14 +744,22 @@
                 </div>
             </section>
 
+<<<<<<< HEAD
             <!-- Products Grid -->
             <section class="products-grid">
                 <!-- Product 1 -->
+=======
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="products-grid">
+            <!-- Product 1: Document Verification System -->
+>>>>>>> master
                 <article class="product-card" data-category="verification">
                     <div class="product-image">
                         <img src="../assets/data-security-locking-a-folder.jpg" alt="Document Verification System">
                     </div>
                     <div class="product-content">
+<<<<<<< HEAD
                         <div class="product-badge">New</div>
                         <h3>Document Verification System</h3>
                         <p class="product-description">
@@ -348,11 +785,31 @@
                 </article>
 
                 <!-- Product 2 -->
+=======
+                    <div class="product-badge new">NEW</div>
+                    <h3 class="product-title">Document Verification System</h3>
+                    <p>A secure blockchain-based system for issuing and verifying documents with complete traceability and immutability.</p>
+                        <ul class="product-features">
+                        <li>Issue digital certificates</li>
+                        <li>Verify document authenticity</li>
+                        <li>Manage issuer dashboard</li>
+                        <li>Track document history</li>
+                        <li>Ensure data integrity</li>
+                        </ul>
+                    <div class="product-status">
+                        <span class="status-badge development">IN DEVELOPMENT Q2 2025</span>
+                    </div>
+                    </div>
+                </article>
+
+            <!-- Product 2: Asset Tokenization Platform -->
+>>>>>>> master
                 <article class="product-card" data-category="tokenization">
                     <div class="product-image">
                         <img src="../assets/Tokenization3.jpg" alt="Asset Tokenization Platform">
                     </div>
                     <div class="product-content">
+<<<<<<< HEAD
                         <div class="product-badge">Featured</div>
                         <h3>Asset Tokenization Platform</h3>
                         <p class="product-description">
@@ -378,11 +835,31 @@
                 </article>
 
                 <!-- Product 3 -->
+=======
+                    <div class="product-badge featured">FEATURED</div>
+                    <h3 class="product-title">Asset Tokenization Platform</h3>
+                    <p>Transform real-world assets into digital tokens with our comprehensive platform for enhanced liquidity and accessibility.</p>
+                        <ul class="product-features">
+                        <li>Create digital assets</li>
+                        <li>Manage token economics</li>
+                        <li>Enable secondary trading</li>
+                        <li>Ensure regulatory compliance</li>
+                        <li>Provide liquidity solutions</li>
+                        </ul>
+                    <div class="product-status">
+                        <span class="status-badge beta">BETA TESTING Q1 2025</span>
+                    </div>
+                    </div>
+                </article>
+
+            <!-- Product 3: Smart Contract Factory -->
+>>>>>>> master
                 <article class="product-card" data-category="smart-contracts">
                     <div class="product-image">
                         <img src="../assets/smartcontract development.jpg" alt="Smart Contract Factory">
                     </div>
                     <div class="product-content">
+<<<<<<< HEAD
                         <div class="product-badge">Popular</div>
                         <h3>Smart Contract Factory</h3>
                         <p class="product-description">
@@ -513,12 +990,88 @@
                     <a href="#privacy">Privacy Policy</a>
                     <a href="#cookies">Cookie Policy</a>
                 </div>
+=======
+                    <div class="product-badge popular">POPULAR</div>
+                    <h3 class="product-title">Smart Contract Factory</h3>
+                    <p>Automate your business processes with customizable smart contracts designed for various use cases and industries.</p>
+                        <ul class="product-features">
+                        <li>Pre-built contract templates</li>
+                        <li>Custom contract development</li>
+                        <li>Security auditing</li>
+                        <li>Deployment management</li>
+                        <li>Monitoring and analytics</li>
+                        </ul>
+                    <div class="product-status">
+                        <span class="status-badge available">AVAILABLE NOW</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+        </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3 class="footer-title">TechVitta Blog</h3>
+                <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        <div class="footer-bottom">
+                <p>&copy; 2025 TechVitta Blog. All rights reserved.</p>
+>>>>>>> master
             </div>
         </div>
     </footer>
 
+<<<<<<< HEAD
     <script src="../script.js"></script>
     <script>
+=======
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        if (mobileMenuBtn && navLinks) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.navbar-nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+        }
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        if (themeToggle) {
+            // Check for saved theme preference or default to dark mode
+            const currentTheme = localStorage.getItem('theme') || 'dark';
+            body.setAttribute('data-theme', currentTheme);
+            
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = body.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                body.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                
+                // Update button icon
+                const icon = themeToggle.querySelector('i');
+                icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            });
+        }
+
+>>>>>>> master
         // Product category filtering
         document.addEventListener('DOMContentLoaded', function() {
             const tabBtns = document.querySelectorAll('.tab-btn');
@@ -544,7 +1097,38 @@
                 });
             });
         });
+<<<<<<< HEAD
     </script>
 </body>
 
+=======
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (navbar) {
+                if (window.scrollY > 100) {
+                    navbar.style.background = 'rgba(0, 0, 0, 0.98)';
+                } else {
+                    navbar.style.background = 'rgba(0, 0, 0, 0.95)';
+                }
+            }
+        });
+    </script>
+</body>
+>>>>>>> master
 </html>
