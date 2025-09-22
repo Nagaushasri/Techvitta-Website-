@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TechVitta</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="assets/Logo.jpg">
+  <style>
+    /* Global center alignment and straight lines for all content */
+    body {
+      text-align: center !important;
+    }
+    
+    .container, .hero-content, .features-section, .services-section, 
+    .about-section, .cta-section, .stats-section {
+      text-align: center !important;
+      max-width: 1200px;
+      margin: 0 auto !important;
+      padding: 2rem;
+    }
+    
+    .hero-content h1, .hero-content p {
+      text-align: center !important;
+      margin: 0 auto !important;
+    }
+    
+    .features-grid, .services-grid, .stats-grid {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: stretch;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    
+    .feature-card, .service-card, .stat-card {
+      text-align: center !important;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      min-width: 280px;
+      max-width: 350px;
+    }
+    
+    .feature-card h3, .service-card h3, .stat-card h3,
+    .feature-card p, .service-card p, .stat-card p {
+      text-align: center !important;
+    }
+    
+    .section-title, .gradient-text {
+      text-align: center !important;
+      margin: 0 auto 2rem auto !important;
+    }
+    
+    .about-content {
+      text-align: center !important;
+      max-width: 800px;
+      margin: 0 auto !important;
+    }
+    
+    .cta-content {
+      text-align: center !important;
+      max-width: 600px;
+      margin: 0 auto !important;
+    }
+    
+    .btn, .cta-button {
+      display: inline-block;
+      margin: 0 auto !important;
+      text-align: center !important;
+    }
+    
+    /* Mobile responsive center alignment */
+    @media (max-width: 768px) {
+      .container, .hero-content, .features-section, .services-section, 
+      .about-section, .cta-section, .stats-section {
+        padding: 1rem !important;
+        text-align: center !important;
+      }
+      
+      .features-grid, .services-grid, .stats-grid {
+        flex-direction: column;
+        align-items: center !important;
+      }
+      
+      .feature-card, .service-card, .stat-card {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto !important;
+      }
+    }
+    
+    /* Force center alignment for all text elements */
+    * {
+      text-align: center !important;
+    }
+    
+    /* Exceptions for specific elements that should remain left-aligned */
+    input, textarea, select {
+      text-align: left !important;
+    }
+    
+    /* Footer center alignment */
+    footer {
+      text-align: center !important;
+    }
+    
+    .footer-content {
+      text-align: center !important;
+      display: flex;
+      justify-content: center !important;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    
+    .footer-section {
+      text-align: center !important;
+      flex: 1;
+      min-width: 250px;
+      max-width: 300px;
+    }
+    
+        .footer-section h3, .footer-section h4 {
+            text-align: center !important;
+            white-space: nowrap !important;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.2rem !important;
+            margin-bottom: 1rem !important;
+        }
+    
+    .contact-info {
+      text-align: center !important;
+    }
+    
+        .contact-item {
+            text-align: center !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin-bottom: 0.3rem;
+            gap: 0.1rem;
+            max-width: 100%;
+        }
+        
+        .contact-item svg {
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+        }
+        
+        .contact-item span {
+            text-align: center !important;
+            display: block !important;
+            line-height: 1.3;
+            font-size: 0.85rem;
+            max-width: 200px;
+            margin: 0 auto;
+        }
+    
+    .footer-bottom {
+      text-align: center !important;
+    }
+    
+    .footer-bottom-content {
+      text-align: center !important;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center !important;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    
+      /* Mobile footer alignment */
+      @media (max-width: 768px) {
+        .footer-content {
+          flex-direction: column;
+          align-items: center !important;
+        }
+        
+        .footer-section {
+          width: 100%;
+          text-align: center !important;
+          margin-bottom: 2rem;
+        }
+        
+        .contact-item {
+          text-align: center !important;
+          flex-direction: column !important;
+          align-items: center !important;
+          justify-content: center !important;
+          gap: 0.3rem;
+          margin-bottom: 0.8rem;
+        }
+        
+        .contact-item span {
+          white-space: normal !important;
+          text-align: center !important;
+          max-width: 260px;
+          line-height: 1.3;
+          margin: 0 auto;
+          font-size: 0.85rem;
+        }
+      }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="logo" data-page="home">TechVitta</a>
+    <!-- Hidden checkbox for CSS toggle -->
+    <input type="checkbox" id="menu-toggle" />
+    <!-- Hamburger icon -->
+    <label for="menu-toggle" class="hamburger">☰</label>
+    <div class="nav-links">
+      <a href="index.html" data-page="home">Home</a>
+      <a href="about.html" data-page="about">About Us</a>
+      <a href="products.html" data-page="products">Our Products</a>
+      <a href="services.html" data-page="services">Services</a>
+      <a href="blogs.html" data-page="blogs">Blogs</a>
+      <a href="contact.html" data-page="contact">Contact Us</a>
+      <div class="theme-toggle">
+        <label class="theme-toggle-label" for="theme-toggle">
+          <input type="checkbox" id="theme-toggle" class="theme-toggle-checkbox">
+          <span class="theme-toggle-slider"></span>
+        </label>
+        <span>Toggle Theme</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content Container -->
+  <main id="content">
+    <!-- Home Section -->
+    <section id="home">
+      <!-- Hero Section -->
+      <div class="hero-section">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1>Welcome to TechVitta</h1>
+            <p>Making Blockchain Accessible and Practical for Your Business</p>
+          </div>
+          <div class="hero-image">
+            <img src="assets/32438.jpg" alt="Blockchain Technology">
+          </div>
+        </div>
+      </div>
+
+      <!-- Two Column Section -->
+      <section class="two-column">
+        <div class="image-container">
+          <img src="assets/intro.jpg" alt="Blockchain Technology">
+        </div>
+        <div class="text-container">
+          <h2 class="gradient-heading">Making Blockchain Accessible and Practical for Your Business</h2>
+          <p class="intro-text">At TechVitta, we're dedicated to demystifying blockchain technology. We focus on small
+            case uses, ensuring that even the most sophisticated blockchain solutions are accessible and practical for
+            everyday business applications.</p>
+          <div class="features-list">
+            <div class="feature-item">
+              <span class="arrow-icon">→</span>
+              <div class="feature-content">
+                <strong>Tokenization Solutions:</strong> Convert real-world assets into digital tokens.
+              </div>
+            </div>
+            <div class="feature-item">
+              <span class="arrow-icon">→</span>
+              <div class="feature-content">
+                <strong>Blockchain Platform Development:</strong> Tailored solutions for your unique business needs.
+              </div>
+            </div>
+            <div class="feature-item">
+              <span class="arrow-icon">→</span>
+              <div class="feature-content">
+                <strong>Web3 Application Integration:</strong> Leverage decentralized applications for enhanced
+                functionality.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="feature-section">
+        <div class="feature-box">
+          <img src="assets/Accesss Innovative Solutuins.jpg" alt="Business Partnership">
+          <h3>Access Innovative Solutions</h3>
+          <p>Gain access to our suite of innovative blockchain and Web3 solutions.</p>
+        </div>
+        <div class="feature-box">
+          <img src="assets/Leverage Our Expertise.jpg" alt="Team Collaboration">
+          <h3>Leverage Our Expertise</h3>
+          <p>Benefit from our deep expertise in blockchain technology and tokenization.</p>
+        </div>
+        <div class="feature-box">
+          <img src="assets/Seamless Integration.jpg" alt="Web3 Integration">
+          <h3>Seamless Integration</h3>
+          <p>Experience seamless integration of our solutions into your existing systems.</p>
+        </div>
+      </section>
+
+      <!-- Blockchain Business Section -->
+      <section class="blockchain-business">
+        <div class="blockchain-content">
+          <h2>Blockchain for Business</h2>
+          <p class="blockchain-intro">
+            Trust is the fundamental component of a multi-party exchange in modern commerce. Establishing that trust
+            takes time and losing it can be costly. By using blockchain to broker trust, businesses can mitigate risk,
+            reduce costs, and improve efficiencies.
+          </p>
+          <p class="blockchain-subtitle">Blockchain is particularly useful when,</p>
+
+          <div class="blockchain-features">
+            <div class="feature-item">
+              <div class="feature-icon">
+                <img src="assets/data-security-locking-a-folder.jpg" alt="Data Security">
+              </div>
+              <p>Multiple organizations maintain and manipulate the same data</p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon">
+                <img src="assets/data-security-with-key-on-laptop.jpg" alt="Single Source of Truth">
+              </div>
+              <p>Intermediaries are required to control the single source of truth</p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon">
+                <img src="assets/searching-for-information-online-on-tablet.jpg" alt="Manual Verification">
+              </div>
+              <p>Processes involve high value, manual verification steps</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Industries & Use-Cases Section -->
+      <section class="industries-section">
+        <h2>Industries & Use-Cases</h2>
+
+        <div class="industry-tabs">
+          <button class="tab-btn active" data-tab="supply-chain">Supply Chain</button>
+          <button class="tab-btn" data-tab="real-estate">Real Estate</button>
+          <button class="tab-btn" data-tab="banking">Banking & Finance</button>
+          <button class="tab-btn" data-tab="healthcare">Healthcare</button>
+          <button class="tab-btn" data-tab="energy">Energy</button>
+          <button class="tab-btn" data-tab="luxury">Luxury Goods</button>
+        </div>
+
+        <div class="industry-content active" id="supply-chain">
+          <div class="industry-grid">
+            <div class="industry-image">
+              <img src="assets/supply chain.jpg" alt="Supply Chain">
+            </div>
+            <div class="use-cases">
+              <div class="use-case">
+                <h3>Increasing transparency</h3>
+                <p>Track and Trace product movements throughout the supply chain with a unique digital identity on chain
+                </p>
+              </div>
+              <div class="use-case">
+                <h3>Prevent counterfeit</h3>
+                <p>Tokenize the products, making them tamper-proof and easily verifiable</p>
+              </div>
+              <div class="use-case">
+                <h3>Manage product recalls</h3>
+                <p>Unique digital identity, making it easy to identify and trace products in the event of a recall</p>
+              </div>
+              <div class="use-case">
+                <h3>Reduce fraud</h3>
+                <p>Reduce fraud by ensuring all transactions are recorded on the blockchain and can't be tampered</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="industry-content" id="real-estate">
+          <div class="industry-grid">
+            <div class="industry-image">
+              <img src="assets/real estate.jpg" alt="Real Estate">
+            </div>
+            <div class="use-cases">
+              <div class="use-case">
+                <h3>Enhanced Liquidity</h3>
+                <p>Converts property ownership into digital tokens, allowing for quick buying and selling on secondary
+                  markets, increasing liquidity and flexibility.</p>
+              </div>
+              <div class="use-case">
+                <h3>Fractional Ownership</h3>
+                <p>Enables investors to purchase fractional shares of high-value properties, lowering entry barriers and
+                  allowing investment in prime real estate with less capital.</p>
+              </div>
+              <div class="use-case">
+                <h3>Raise Funds</h3>
+                <p>Broadens investment access, allowing individuals from diverse financial backgrounds to participate in
+                  real estate markets, promoting inclusivity</p>
+              </div>
+              <div class="use-case">
+                <h3>Property Management</h3>
+                <p>Utilizes smart contracts to streamline property management and transactions, reducing intermediaries
+                  and minimizing errors and fraud.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="industry-content" id="banking">
+          <div class="industry-grid">
+            <div class="industry-image">
+              <img src="assets/banking & finance.jpg" alt="Banking & Finance">
+            </div>
+            <div class="use-cases">
+              <div class="use-case">
+                <h3>Lending</h3>
+                <p>Create digital loan assets that could be easily traded on secondary markets. Reduce the cost of
+                  funding and a new sources of liquidity</p>
+              </div>
+              <div class="use-case">
+                <h3>Cross-border payments</h3>
+                <p>Make cross-border payments more efficient and secure. Eliminate the need for intermediaries and
+                  reduce transaction times & costs</p>
+              </div>
+              <div class="use-case">
+                <h3>Securitization of assets</h3>
+                <p>Tokenize and securitize various assets, such as real estate, commodities, and even receivables</p>
+              </div>
+              <div class="use-case">
+                <h3>Trade finance</h3>
+                <p>Improve transparency in their operations, such as in trade finance or supply chain financing</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="industry-content" id="healthcare">
+          <div class="industry-grid">
+            <div class="industry-image">
+              <img src="assets/health care.jpg" alt="Healthcare">
+            </div>
+            <div class="use-cases">
+              <div class="use-case">
+                <h3>Digital identities</h3>
+                <p>Create digital identities for healthcare products, ensuring traceability and transparancy</p>
+              </div>
+              <div class="use-case">
+                <h3>Prevent counterfeit</h3>
+                <p>Track and trace clinical trial data, enhancing transparency and accountability</p>
+              </div>
+              <div class="use-case">
+                <h3>Medical device management</h3>
+                <p>Enhance tracking and tracing of medical devices throughout the supply chain, ensuring quality and
+                  safety</p>
+              </div>
+              <div class="use-case">
+                <h3>Drug supply chain management</h3>
+                <p>Track and trace drugs throughout the supply chain, reducing counterfeit drugs circulation and
+                  enhancing patient safety</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="industry-content" id="energy">
+          <div class="industry-grid">
+            <div class="industry-image">
+              <img src="assets/energy.jpg" alt="Energy">
+            </div>
+            <div class="use-cases">
+              <div class="use-case">
+                <h3>Carbon Credits</h3>
+                <p>Our solution can tokenize carbon credits, making it easier to trade and offset carbon emissions</p>
+              </div>
+              <div class="use-case">
+                <h3>Energy Consumption tracking</h3>
+                <p>Our solution can enable the tracking and tracing of energy consumption and production, reducing
+                  energy waste and costs.</p>
+              </div>
+              <div class="use-case">
+                <h3>Peer-to-Peer Energy Trading</h3>
+                <p>Allows consumers to buy and sell excess energy directly with each other through digital tokens,
+                  promoting local energy markets and increasing efficiency in energy distribution</p>
+              </div>
+              <div class="use-case">
+                <h3>Liquidity for Energy Assets</h3>
+                <p>Converts energy assets into digital tokens, facilitating easier trading and investment, and providing
+                  more liquidity in the traditionally static energy market.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="industry-content" id="luxury">
+          <div class="industry-grid">
+            <div class="industry-image">
+              <img src="assets/luxury goods.jpg" alt="Luxury Goods">
+            </div>
+            <div class="use-cases">
+              <div class="use-case">
+                <h3>Enhanced Liquidity</h3>
+                <p>Convert ownership of luxury goods into digital tokens, enabling easier buying and selling on
+                  secondary markets, thus increasing liquidity for typically illiquid assets.</p>
+              </div>
+              <div class="use-case">
+                <h3>Fractional Ownership</h3>
+                <p>Allows investors to purchase fractional shares of luxury goods, such as rare watches or high-end art,
+                  making it more accessible to own a part of these valuable items</p>
+              </div>
+              <div class="use-case">
+                <h3>Authenticity Verification</h3>
+                <p>Utilize blockchain technology to provide immutable records of a luxury good's history and
+                  authenticity, ensuring buyers and sellers can trust the provenance of high-value items.</p>
+              </div>
+              <div class="use-case">
+                <h3>Simplified Transfer and Trade</h3>
+                <p>Streamline the process of transferring and trading luxury goods through smart contracts, reducing the
+                  need for intermediaries and lowering transaction costs.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3 style="white-space: nowrap; text-align: center; background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;">TechVitta Innovations Pvt Ltd</h3>
+        <p>Leading the blockchain revolution with innovative solutions and cutting-edge technology. Transforming businesses through decentralized applications and Web3 integration.</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/techvitta.in?igsh=eGdubTlra242bjlm" target="_blank" class="social-link" title="Follow us on Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="currentColor" stroke-width="2"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/company/techvitta-innovations-pvt-ltd/" target="_blank" class="social-link" title="Connect with us on LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="mailto:support@techvitta.in" class="social-link" title="Email us">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Services</h4>
+        <ul>
+                    <li><a href="services.html">Blockchain Development</a></li>
+                    <li><a href="services.html">Web3 Integration</a></li>
+                    <li><a href="services.html">Smart Contracts</a></li>
+                    <li><a href="services.html">Asset Tokenization</a></li>
+                    <li><a href="services.html">DeFi Solutions</a></li>
+                    <li><a href="services.html">NFT Development</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="products.html">Our Products</a></li>
+                    <li><a href="blogs.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+          <li><a href="#careers">Careers</a></li>
+          <li><a href="#privacy">Privacy Policy</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Contact Info</h4>
+        <div class="contact-info">
+          <div class="contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 10C21 17 12 23 12 23S3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>TECHVITTA, 3rd Floor, Plot no 19, Opp to Cyber pearl, Hitech City, Madhapur, Hyderabad, Telangana, India</span>
+          </div>
+          <div class="contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>support@techvitta.in</span>
+          </div>
+          <div class="contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1468 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.271 2.11999 4.18C2.095 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.65162C2.82196 2.44655 3.0498 2.28271 3.30379 2.17052C3.55777 2.05833 3.83233 2.00026 4.10999 2H7.10999C7.59531 1.99522 8.06691 2.16708 8.43376 2.48353C8.80061 2.79999 9.03996 3.23945 9.10999 3.72C9.23662 4.68007 9.47144 5.62273 9.80999 6.53C9.94454 6.88792 9.97366 7.27691 9.89391 7.65088C9.81415 8.02485 9.62886 8.36811 9.35999 8.64L8.08999 9.91C9.51355 12.4135 11.5865 14.4864 14.09 15.91L15.36 14.64C15.6319 14.3711 15.9751 14.1858 16.3491 14.1061C16.7231 14.0263 17.1121 14.0555 17.47 14.19C18.3773 14.5286 19.3199 14.7634 20.28 14.89C20.7658 14.9616 21.2094 15.2032 21.5265 15.5665C21.8437 15.9298 22.0122 16.3923 22 16.89V16.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>+91 (903) 515-1944</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="footer-bottom-content">
+        <p>© 2025 TechVitta Innovations Pvt Ltd. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="#terms">Terms of Service</a>
+          <a href="#privacy">Privacy Policy</a>
+          <a href="#cookies">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'9443f869ab46ffa9',t:'MTc0Nzk5NzE5Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
+</body>
+
+</html>
