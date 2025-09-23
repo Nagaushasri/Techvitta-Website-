@@ -32,9 +32,9 @@
 
   <!-- Main Content -->
   <main style="padding-top: 100px;">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 2rem; display: grid; grid-template-columns: 2fr 1fr; gap: 3rem;">
       <!-- Article Content -->
-      <article style="background: var(--bg-card); border-radius: 16px; padding: 3rem; border: 1px solid var(--border-color); width: 100%; max-width: 800px; margin: 0 auto;">
+      <article style="background: var(--bg-card); border-radius: 16px; padding: 3rem; border: 1px solid var(--border-color);">
         <a href="blogs.html" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-cyan); text-decoration: none; margin-bottom: 2rem; font-weight: 500;">← Back to Blog</a>
         
         <div style="margin-bottom: 2rem;">
@@ -150,6 +150,9 @@
             main > div {
               padding: 0;
               max-width: 100%;
+              display: flex !important;
+              flex-direction: column !important;
+              align-items: center !important;
             }
             
             article {
@@ -157,6 +160,13 @@
               margin: 0 !important;
               width: 100% !important;
               max-width: 100% !important;
+            }
+            
+            aside {
+              width: 100% !important;
+              max-width: 100% !important;
+              margin-top: 2rem !important;
+              position: static !important;
             }
             
             #articleTitle {
@@ -342,6 +352,19 @@
           <!-- Tags will be loaded here -->
         </div>
       </article>
+
+      <!-- Sidebar -->
+      <aside style="background: var(--bg-card); border-radius: 16px; padding: 2rem; border: 1px solid var(--border-color); height: fit-content; position: sticky; top: 120px;">
+        <h3 style="font-size: 1.5rem; color: var(--text-primary); margin-bottom: 1.5rem; text-align: center;">Recent Articles</h3>
+        <div id="recentArticles" style="margin-bottom: 2rem;">
+          <!-- Recent articles will be loaded here -->
+        </div>
+        
+        <h3 style="font-size: 1.5rem; color: var(--text-primary); margin-bottom: 1.5rem; text-align: center;">Popular Articles</h3>
+        <div id="popularArticles">
+          <!-- Popular articles will be loaded here -->
+        </div>
+      </aside>
     </div>
   </main>
 
@@ -4478,9 +4501,29 @@
       `).join('');
     }
 
+    function loadPopularArticles() {
+      // Get current article slug from URL
+      const currentSlug = getUrlParameter('slug');
+      
+      // Filter out current article and get 5 popular articles (using different articles than recent)
+      const otherArticles = blogData.filter(article => article.slug !== currentSlug);
+      const popularArticles = otherArticles.slice(5, 10); // Get next 5 articles as "popular"
+      
+      document.getElementById('popularArticles').innerHTML = popularArticles.map(article => `
+        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); cursor: pointer; min-height: 100px;" onclick="window.location.href='blog-detail.html?slug=${article.slug}'">
+          <img src="${article.thumbnail}" alt="${article.title}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; flex-shrink: 0;">
+          <div style="flex: 1; min-width: 0;">
+            <h4 style="color: var(--text-primary); font-size: 0.9rem; margin-bottom: 0.5rem; line-height: 1.4; word-wrap: break-word;">${article.title}</h4>
+            <p style="color: var(--text-secondary); font-size: 0.8rem;">${new Date(article.date).toLocaleDateString()}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
       loadArticle();
       loadRecentArticles();
+      loadPopularArticles();
       
       document.getElementById('newsletterForm').addEventListener('submit', function(e) {
         e.preventDefault();
