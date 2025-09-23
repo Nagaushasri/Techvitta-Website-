@@ -103,17 +103,56 @@
             margin: 0 auto;
         }
         
-        /* Mobile-specific styles */
+        /* Mobile-specific styles - Full Screen */
         @media (max-width: 768px) {
             .contact-content {
-                padding: 1rem !important;
+                padding: 0 !important;
                 text-align: center !important;
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .contact-hero h1 {
+                font-size: 3rem !important;
+                line-height: 1.2 !important;
+                margin-bottom: 1.5rem !important;
+                padding: 0 1rem;
+            }
+            
+            .contact-hero p {
+                font-size: 1.2rem !important;
+                margin-bottom: 2rem !important;
+                padding: 0 1rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem !important;
+                margin-bottom: 2rem !important;
+                padding: 0 1rem;
             }
             
             .contact-grid {
                 flex-direction: column;
                 align-items: center !important;
-                gap: 2rem;
+                gap: 2.5rem;
+                padding: 0 1rem;
+            }
+            
+            .contact-card, .contact-form {
+                width: 100%;
+                max-width: 100%;
+                padding: 2rem !important;
+                border-radius: 16px !important;
+            }
+            
+            .contact-card h3 {
+                font-size: 1.6rem !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .contact-card p {
+                font-size: 1.1rem !important;
+                line-height: 1.6 !important;
             }
             
             .contact-info,

@@ -72,23 +72,55 @@
       text-align: center !important;
     }
     
-    /* Mobile responsive center alignment */
+    /* Mobile responsive center alignment - Full Screen */
     @media (max-width: 768px) {
       .container, .hero-content, .features-section, .services-section, 
       .about-section, .cta-section, .stats-section {
-        padding: 1rem !important;
+        padding: 0 !important;
         text-align: center !important;
+        width: 100%;
+        max-width: 100%;
+      }
+      
+      .hero-content h1 {
+        font-size: 3rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 1.5rem !important;
+      }
+      
+      .hero-content p {
+        font-size: 1.2rem !important;
+        margin-bottom: 2rem !important;
+      }
+      
+      .section-title {
+        font-size: 2.5rem !important;
+        margin-bottom: 2rem !important;
       }
       
       .features-grid, .services-grid, .stats-grid {
         flex-direction: column;
         align-items: center !important;
+        gap: 2rem !important;
+        padding: 0 1rem !important;
       }
       
       .feature-card, .service-card, .stat-card {
         width: 100%;
         max-width: 100%;
         margin: 0 auto !important;
+        padding: 2rem !important;
+        border-radius: 16px !important;
+      }
+      
+      .feature-card h3, .service-card h3, .stat-card h3 {
+        font-size: 1.6rem !important;
+        margin-bottom: 1rem !important;
+      }
+      
+      .feature-card p, .service-card p, .stat-card p {
+        font-size: 1.1rem !important;
+        line-height: 1.6 !important;
       }
     }
     

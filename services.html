@@ -97,17 +97,57 @@
             text-align: center !important;
         }
         
-        /* Mobile responsive center alignment */
+        /* Mobile responsive center alignment - Full Screen */
         @media (max-width: 768px) {
             .services-content, .service-hero, .services-grid-section, 
             .service-categories, .service-process {
-                padding: 1rem !important;
+                padding: 0 !important;
                 text-align: center !important;
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .service-hero h1 {
+                font-size: 3rem !important;
+                line-height: 1.2 !important;
+                margin-bottom: 1.5rem !important;
+                padding: 0 1rem;
+            }
+            
+            .service-hero p {
+                font-size: 1.2rem !important;
+                margin-bottom: 2rem !important;
+                padding: 0 1rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem !important;
+                margin-bottom: 2rem !important;
+                padding: 0 1rem;
             }
             
             .services-grid, .process-steps {
                 flex-direction: column;
                 align-items: center !important;
+                gap: 2rem !important;
+                padding: 0 1rem !important;
+            }
+            
+            .service-card, .process-step {
+                width: 100%;
+                max-width: 100%;
+                padding: 2rem !important;
+                border-radius: 16px !important;
+            }
+            
+            .service-card h3, .process-step h3 {
+                font-size: 1.6rem !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .service-card p, .process-step p {
+                font-size: 1.1rem !important;
+                line-height: 1.6 !important;
             }
             
             .service-card, .process-step {
